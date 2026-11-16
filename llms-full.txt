@@ -1093,7 +1093,7 @@ Every network Blowhorn reaches. LinkedIn, X, Reddit and Hacker News through your
 --------------------------------------------------------------------------------
 title: "Action matrix"
 url: https://blowhorn.ai/integrations/actions/index.md
-date: "2026-10-20"
+date: "2026-11-16"
 description: Every Blowhorn action on every platform in one grid. Post, comment, reply, amplify, follow and more on LinkedIn, X, Reddit, Hacker News, Slack, Bluesky and GitHub, with coming-soon platforms marked.
 --------------------------------------------------------------------------------
 

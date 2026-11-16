@@ -31,7 +31,7 @@
     <link rel="icon" href="/favicon.ico" sizes="32x32">
     <link rel="icon" href="/assets/brand/logo/blowhorn-favicon-32.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/assets/brand/logo/blowhorn-apple-touch-icon-180.png">
-<link rel="stylesheet" href="/css/site.min.111a16af4fc5fc2de0d0499c67e6deccc1e7037fe31b8affe15d16804852aa1e.css">
+<link rel="stylesheet" href="/css/site.min.20fc3847b763c726608d2d0a8087baddc87e2a48250a8a8457113c0efeabd3b4.css">
 
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -299,11 +299,10 @@
     </header>
     <script src="/js/nav.min.f9cb0a1cf5fb98c0ffc9bd2b8aff48c463061d31197aea2cfe97924da2a9a643.js" defer></script>
 <main id="main" class="page integrations-page" data-action-filter>
-      <div class="wrap">
-        <header class="page-head">
+      <div class="wrap"><header class="page-head">
           <p class="label">Integrations</p>
           <h1 id="integrations-title" class="display">Every network on the map</h1>
-          <p class="body-lg muted"><span data-count-platforms>7</span> supported now, <span data-count-soon>4</span> coming soon, <span data-count-activities>28</span> actions in the queue. Blowhorn posts as you through your own browser or a platform API. It does not post to GitHub: it rallies reactions on the issue.</p>
+          <p class="body-lg muted"><span data-count-platforms>7</span> supported now, <span data-count-soon>4</span> coming soon, <span data-count-activities>30</span> actions in the queue. Blowhorn posts as you through your own browser or a platform API. GitHub does not take a post. Blowhorn stars repositories and rallies reactions on issues and pull requests.</p>
           <p class="integrations-matrix-link"><a class="button button-secondary" href="/integrations/actions/" data-matrix-link>See every action on every platform</a></p>
         </header>
         <nav id="action-filter" class="action-filter" aria-label="Filter by action">
@@ -315,6 +314,7 @@
             <a class="plat-action" href="#action-reply" data-action-chip="reply">Reply</a>
             <a class="plat-action" href="#action-amplify" data-action-chip="amplify">Amplify</a>
             <a class="plat-action" href="#action-react" data-action-chip="react">React</a>
+            <a class="plat-action" href="#action-star" data-action-chip="star">Star</a>
             <a class="plat-action" href="#action-follow" data-action-chip="follow">Follow</a>
             <a class="plat-action" href="#action-unfollow" data-action-chip="unfollow">Unfollow</a>
             <a class="plat-action" href="#action-accept" data-action-chip="accept">Accept</a>
@@ -389,7 +389,7 @@
             <p class="muted">Posted as you through the platform&#39;s own API, never a borrowed password.</p>
           </div>
           <ul class="grid grid-3 section-body" data-card-deal="card-field card-plain">
-            <li class="card integration-card card-field" data-action-card data-actions="post reply" data-plat-id="slack">
+            <li class="card integration-card card-field" data-action-card data-actions="post reply react" data-plat-id="slack">
               <a class="integration-card-main" href="/docs/reference/platforms/slack/">
                 <span class="logo-tile"><img src="/assets/platforms/slack-mark.svg" alt="" width="28" height="28"></span>
                 <h3 class="h3">Slack</h3>
@@ -398,6 +398,7 @@
               <ul class="integration-actions">
                 <li><a href="/docs/reference/platforms/slack/#action-post">Post</a></li>
                 <li><a href="/docs/reference/platforms/slack/#action-reply">Reply</a></li>
+                <li><a href="/docs/reference/platforms/slack/#action-react">React</a></li>
               </ul>
             </li>
             <li class="card integration-card card-plain" data-action-card data-actions="post reply amplify follow unfollow find analytics" data-plat-id="bluesky">
@@ -421,17 +422,18 @@
         <section class="section" aria-labelledby="cat-rally" data-action-catalog>
           <div class="section-head">
             <h2 id="cat-rally" class="h2">Rally, not posts</h2>
-            <p class="muted">GitHub does not take a post. Blowhorn rallies reactions on the issue.</p>
+            <p class="muted">GitHub does not take a post. Blowhorn stars repositories and rallies reactions on issues and pull requests.</p>
           </div>
           <ul class="grid grid-3 section-body" data-card-deal="card-field">
-            <li class="card integration-card card-field" data-action-card data-actions="react follow find" data-plat-id="github">
+            <li class="card integration-card card-field" data-action-card data-actions="react star follow find" data-plat-id="github">
               <a class="integration-card-main" href="/docs/reference/platforms/github/">
                 <span class="logo-tile"><img src="/assets/platforms/github-invertocat-black.svg" alt="" width="28" height="28"></span>
                 <h3 class="h3">GitHub</h3>
-                <p>Reactions on issues</p>
+                <p>GitHub API</p>
               </a>
               <ul class="integration-actions">
                 <li><a href="/docs/reference/platforms/github/#action-react">React</a></li>
+                <li><a href="/docs/reference/platforms/github/#action-star">Star</a></li>
                 <li><a href="/docs/reference/platforms/github/#action-follow">Follow</a></li>
                 <li><a href="/docs/reference/platforms/github/#action-find">Find</a></li>
               </ul>
@@ -637,15 +639,39 @@
         <section class="section action-group" id="action-react" data-action-group="react" aria-labelledby="action-react-title">
           <div class="section-head">
             <h2 id="action-react-title" class="h2">React</h2>
-            <p class="muted">Add reactions to an issue or pull request.</p>
+            <p class="muted">Add a reaction to a post or message.</p>
           </div>
           <ul class="grid grid-3 section-body">
             <li>
-              <a class="card card-link card-field" href="/docs/reference/platforms/github/#action-react">
+              <a class="card card-link card-field" href="/docs/reference/platforms/slack/#action-react">
+                <span class="logo-tile"><img src="/assets/platforms/slack-mark.svg" alt="" width="28" height="28"></span>
+                <h3 class="h3">Slack</h3>
+                <p>Slack API</p>
+                <p class="caption muted">React</p>
+              </a>
+            </li>
+            <li>
+              <a class="card card-link card-plain" href="/docs/reference/platforms/github/#action-react">
                 <span class="logo-tile"><img src="/assets/platforms/github-invertocat-black.svg" alt="" width="28" height="28"></span>
                 <h3 class="h3">GitHub</h3>
-                <p>Reactions on issues</p>
+                <p>GitHub API</p>
                 <p class="caption muted">React</p>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section class="section action-group" id="action-star" data-action-group="star" aria-labelledby="action-star-title">
+          <div class="section-head">
+            <h2 id="action-star-title" class="h2">Star</h2>
+            <p class="muted">Star repositories over the API.</p>
+          </div>
+          <ul class="grid grid-3 section-body">
+            <li>
+              <a class="card card-link card-field" href="/docs/reference/platforms/github/#action-star">
+                <span class="logo-tile"><img src="/assets/platforms/github-invertocat-black.svg" alt="" width="28" height="28"></span>
+                <h3 class="h3">GitHub</h3>
+                <p>GitHub API</p>
+                <p class="caption muted">Star</p>
               </a>
             </li>
           </ul>
@@ -676,7 +702,7 @@
               <a class="card card-link card-stamp" href="/docs/reference/platforms/github/#action-follow">
                 <span class="logo-tile"><img src="/assets/platforms/github-invertocat-black.svg" alt="" width="28" height="28"></span>
                 <h3 class="h3">GitHub</h3>
-                <p>Reactions on issues</p>
+                <p>GitHub API</p>
                 <p class="caption muted">Follow</p>
               </a>
             </li>
@@ -748,7 +774,7 @@
               <a class="card card-link card-plain" href="/docs/reference/platforms/github/#action-find">
                 <span class="logo-tile"><img src="/assets/platforms/github-invertocat-black.svg" alt="" width="28" height="28"></span>
                 <h3 class="h3">GitHub</h3>
-                <p>Reactions on issues</p>
+                <p>GitHub API</p>
                 <p class="caption muted">Find</p>
               </a>
             </li>

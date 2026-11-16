@@ -31,7 +31,7 @@
     <link rel="icon" href="/favicon.ico" sizes="32x32">
     <link rel="icon" href="/assets/brand/logo/blowhorn-favicon-32.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/assets/brand/logo/blowhorn-apple-touch-icon-180.png">
-<link rel="stylesheet" href="/css/site.min.111a16af4fc5fc2de0d0499c67e6deccc1e7037fe31b8affe15d16804852aa1e.css">
+<link rel="stylesheet" href="/css/site.min.20fc3847b763c726608d2d0a8087baddc87e2a48250a8a8457113c0efeabd3b4.css">
 
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -654,7 +654,7 @@
           <div class="section-head section-head-center">
             <p class="label">Platforms</p>
             <h2 id="platforms-title" class="display">One queue. Every network that matters.</h2>
-            <p class="body-lg muted">One queue for every network your audience reads. LinkedIn, X, Reddit and Hacker News go through your own browser with the Blowhorn extension. Slack and Bluesky use their APIs. On GitHub, Blowhorn rallies reactions on the issue, it does not post.</p>
+            <p class="body-lg muted">One queue for every network your audience reads. LinkedIn, X, Reddit and Hacker News go through your own browser with the Blowhorn extension. Slack and Bluesky use their APIs. On GitHub, Blowhorn stars repositories and rallies reactions on issues and pull requests, it does not post.</p>
           </div><figure class="plat-clip" data-plat-clip aria-labelledby="plat-clip-title">
   <figcaption class="visually-hidden"><span id="plat-clip-title">Every platform Blowhorn supports</span>. A 10-second loop. A row of platform logos slides by: LinkedIn, X, Reddit, Hacker News, Slack, Bluesky and GitHub, then YouTube, Instagram, TikTok and Facebook, which are coming soon. A cursor picks each supported platform in turn, and its card shows how Blowhorn reaches it and the actions it takes there.</figcaption>
   <video class="plat-clip-video logo-on-light" controls muted loop playsinline preload="metadata" width="1920" height="1080" poster="/assets/video/supported-platforms-light-poster.webp" aria-labelledby="plat-clip-title">
@@ -735,13 +735,13 @@
               </li>
               <li class="plat-cat">
                 <h3 class="h3">Rally, not posts</h3>
-                <p class="caption muted">GitHub does not take a post. Blowhorn rallies reactions on the issue.</p>
+                <p class="caption muted">GitHub does not take a post. Blowhorn stars repositories and rallies reactions on issues and pull requests.</p>
                 <ul class="plat-row">
                   <li>
                     <a class="platform" href="/docs/reference/platforms/github/">
                       <span class="logo-tile"><img src="/assets/platforms/github-invertocat-black.svg" alt="" width="28" height="28"></span>
                       <span class="ui">GitHub</span>
-                      <span class="caption">Reactions on issues</span>
+                      <span class="caption">GitHub API</span>
                     </a>
                   </li>
                 </ul>
@@ -840,7 +840,7 @@
                   <a class="platform" href="/docs/reference/platforms/github/">
                     <span class="logo-tile"><img src="/assets/platforms/github-invertocat-black.svg" alt="" width="28" height="28"></span>
                     <span class="ui">GitHub</span>
-                    <span class="caption">Reactions on issues</span>
+                    <span class="caption">GitHub API</span>
                   </a>
                 </li>
                 <li data-plat-id="youtube" data-plat-roles="marketing">
@@ -879,7 +879,7 @@
               <p class="constellation-count">
                 <span class="constellation-num" data-count-platforms>7</span>
                 <span class="constellation-label">supported platforms</span>
-                <span class="caption muted"><span data-count-soon>4</span> more on the way · <span data-count-activities>28</span> actions</span>
+                <span class="caption muted"><span data-count-soon>4</span> more on the way · <span data-count-activities>30</span> actions</span>
               </p>
               <p class="constellation-ctl">
                 <button type="button" class="constellation-pause" data-constellation-pause aria-pressed="false">Pause motion</button>
@@ -962,6 +962,7 @@
                 <a class="plat-action" href="#action-reply" data-action-chip="reply">Reply</a>
                 <a class="plat-action" href="#action-amplify" data-action-chip="amplify">Amplify</a>
                 <a class="plat-action" href="#action-react" data-action-chip="react">React</a>
+                <a class="plat-action" href="#action-star" data-action-chip="star">Star</a>
                 <a class="plat-action" href="#action-follow" data-action-chip="follow">Follow</a>
                 <a class="plat-action" href="#action-unfollow" data-action-chip="unfollow">Unfollow</a>
                 <a class="plat-action" href="#action-accept" data-action-chip="accept">Accept</a>
@@ -1107,13 +1108,33 @@
               </section>
               <section class="action-group" id="action-react" data-action-group="react" aria-labelledby="action-react-title">
                 <h3 id="action-react-title" class="h3">React</h3>
-                <p class="caption muted">Add reactions to an issue or pull request.</p>
+                <p class="caption muted">Add a reaction to a post or message.</p>
                 <ul class="plat-row">
+                  <li>
+                    <a class="platform" href="/docs/reference/platforms/slack/#action-react">
+                      <span class="logo-tile"><img src="/assets/platforms/slack-mark.svg" alt="" width="28" height="28"></span>
+                      <span class="ui">Slack</span>
+                      <span class="caption">Slack API</span>
+                    </a>
+                  </li>
                   <li>
                     <a class="platform" href="/docs/reference/platforms/github/#action-react">
                       <span class="logo-tile"><img src="/assets/platforms/github-invertocat-black.svg" alt="" width="28" height="28"></span>
                       <span class="ui">GitHub</span>
-                      <span class="caption">Reactions on issues</span>
+                      <span class="caption">GitHub API</span>
+                    </a>
+                  </li>
+                </ul>
+              </section>
+              <section class="action-group" id="action-star" data-action-group="star" aria-labelledby="action-star-title">
+                <h3 id="action-star-title" class="h3">Star</h3>
+                <p class="caption muted">Star repositories over the API.</p>
+                <ul class="plat-row">
+                  <li>
+                    <a class="platform" href="/docs/reference/platforms/github/#action-star">
+                      <span class="logo-tile"><img src="/assets/platforms/github-invertocat-black.svg" alt="" width="28" height="28"></span>
+                      <span class="ui">GitHub</span>
+                      <span class="caption">GitHub API</span>
                     </a>
                   </li>
                 </ul>
@@ -1140,7 +1161,7 @@
                     <a class="platform" href="/docs/reference/platforms/github/#action-follow">
                       <span class="logo-tile"><img src="/assets/platforms/github-invertocat-black.svg" alt="" width="28" height="28"></span>
                       <span class="ui">GitHub</span>
-                      <span class="caption">Reactions on issues</span>
+                      <span class="caption">GitHub API</span>
                     </a>
                   </li>
                 </ul>
@@ -1199,7 +1220,7 @@
                     <a class="platform" href="/docs/reference/platforms/github/#action-find">
                       <span class="logo-tile"><img src="/assets/platforms/github-invertocat-black.svg" alt="" width="28" height="28"></span>
                       <span class="ui">GitHub</span>
-                      <span class="caption">Reactions on issues</span>
+                      <span class="caption">GitHub API</span>
                     </a>
                   </li>
                 </ul>

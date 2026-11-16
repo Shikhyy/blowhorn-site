@@ -45,7 +45,7 @@
     <link rel="apple-touch-icon" href="/assets/brand/logo/blowhorn-apple-touch-icon-180.png"><link rel="preload" href="/scss/main.min.e160ee0f1470a9e785221c16912777c236fedbb0c8ef27e3b9b728e96d70e6c7.css" as="style" integrity="sha256-4WDuDxRwqeeFIhwWkSd3wjb&#43;27DI7yfjubco6W1w5sc=" crossorigin="anonymous">
 <link href="/scss/main.min.e160ee0f1470a9e785221c16912777c236fedbb0c8ef27e3b9b728e96d70e6c7.css" rel="stylesheet" integrity="sha256-4WDuDxRwqeeFIhwWkSd3wjb&#43;27DI7yfjubco6W1w5sc=" crossorigin="anonymous">
 
-<link rel="stylesheet" href="/css/site.min.111a16af4fc5fc2de0d0499c67e6deccc1e7037fe31b8affe15d16804852aa1e.css">
+<link rel="stylesheet" href="/css/site.min.20fc3847b763c726608d2d0a8087baddc87e2a48250a8a8457113c0efeabd3b4.css">
 
     <script src="/js/vendor/jquery.min.fc9a93dd241f6b045cbff0481cf4e1901becd0e12fb45166a8f17f95823f0b1a.js"></script>
     <script src="/js/vendor/lunr.min.d802a4db88ab7be6be90d8c44a31a0f1697db28c254179baa75e704d51723068.js"></script>
@@ -344,7 +344,7 @@
   <form class="td-sidebar__search d-flex align-items-center">
     <div class="td-search td-search--offline">
       <div class="td-search__icon"></div>
-      <input type="search" name="q" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.c50bf662616a7cd9ad89e6cafd024164.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
+      <input type="search" name="q" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.9b1cd4586685fda9ecc78ce76e32bec3.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
       <button type="submit" class="visually-hidden">Search this site…</button>
     </div>
     <button class="btn btn-link td-sidebar__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#td-section-nav" aria-controls="td-section-nav" aria-expanded="false" aria-label="Toggle section navigation">
@@ -715,6 +715,7 @@ at-a-glance grid, including coming-soon platforms, see the
         <optgroup label="Rally">
           <option value="amplify">Amplify</option>
           <option value="react">React</option>
+          <option value="star">Star</option>
         </optgroup>
         <optgroup label="Ranks">
           <option value="follow">Follow</option>
@@ -833,62 +834,72 @@ at-a-glance grid, including coming-soon platforms, see the
         <td data-label="Platform"><a class="action-table-plat" href="/docs/reference/platforms/bluesky/" title="Bluesky"><span class="logo-tile"><img src="/assets/platforms/bluesky-butterfly-blue.svg" alt="Bluesky" width="20" height="20"></span></a></td>
         <td data-label="What it does"><span>Reposts a post from each of your profiles.</span></td>
       </tr>
-      <tr data-row="react:github" data-action="react" data-platform="github" data-status="supported" data-order="16" data-k-action="react" data-k-platform="github">
+      <tr data-row="react:slack" data-action="react" data-platform="slack" data-status="supported" data-order="16" data-k-action="react" data-k-platform="slack">
+        <th scope="row"><a href="/docs/reference/platforms/slack/#action-react">React</a></th>
+        <td data-label="Platform"><a class="action-table-plat" href="/docs/reference/platforms/slack/" title="Slack"><span class="logo-tile"><img src="/assets/platforms/slack-mark.svg" alt="Slack" width="20" height="20"></span></a></td>
+        <td data-label="What it does"><span>Adds an emoji reaction to a message. A reaction already there is left as-is. Take it back with --remove.</span></td>
+      </tr>
+      <tr data-row="react:github" data-action="react" data-platform="github" data-status="supported" data-order="17" data-k-action="react" data-k-platform="github">
         <th scope="row"><a href="/docs/reference/platforms/github/#action-react">React</a></th>
         <td data-label="Platform"><a class="action-table-plat" href="/docs/reference/platforms/github/" title="GitHub"><span class="logo-tile"><img src="/assets/platforms/github-invertocat-black.svg" alt="GitHub" width="20" height="20"></span></a></td>
         <td data-label="What it does"><span>Adds the five upbeat reactions (&#43;1, laugh, hooray, heart, rocket) to an issue or pull request from each of your profiles. Running it again adds none of them twice. <span class="muted">GitHub doesn&#39;t publish posts; it needs an issue or pull request link.</span></span></td>
       </tr>
-      <tr data-row="follow:x" data-action="follow" data-platform="x" data-status="supported" data-order="17" data-k-action="follow" data-k-platform="x (twitter)">
+      <tr data-row="star:github" data-action="star" data-platform="github" data-status="supported" data-order="18" data-k-action="star" data-k-platform="github">
+        <th scope="row"><a href="/docs/reference/platforms/github/#action-star">Star</a></th>
+        <td data-label="Platform"><a class="action-table-plat" href="/docs/reference/platforms/github/" title="GitHub"><span class="logo-tile"><img src="/assets/platforms/github-invertocat-black.svg" alt="GitHub" width="20" height="20"></span></a></td>
+        <td data-label="What it does"><span>Stars each named repository from every selected profile, over the REST API. A repository already starred is counted apart, never starred twice. <span class="muted">GitHub only. Repositories are named on the command line; star cannot be scheduled.</span></span></td>
+      </tr>
+      <tr data-row="follow:x" data-action="follow" data-platform="x" data-status="supported" data-order="19" data-k-action="follow" data-k-platform="x (twitter)">
         <th scope="row"><a href="/docs/reference/platforms/x/#action-follow">Follow</a></th>
         <td data-label="Platform"><a class="action-table-plat" href="/docs/reference/platforms/x/" title="X (Twitter)"><span class="logo-tile"><img src="/assets/platforms/x-logo-black.png" alt="X (Twitter)" width="20" height="20"></span></a></td>
         <td data-label="What it does"><span>Name a target account. With --limit 0, follow that account, or several comma-separated. With a positive limit, follow up to that many of the target&#39;s followers, never the target itself, skipping anyone you already follow. <span class="muted">At most 400 follows per profile a day, and 15 in any 15 minutes, counted from that profile&#39;s follow log on this computer.</span></span></td>
       </tr>
-      <tr data-row="follow:bluesky" data-action="follow" data-platform="bluesky" data-status="supported" data-order="18" data-k-action="follow" data-k-platform="bluesky">
+      <tr data-row="follow:bluesky" data-action="follow" data-platform="bluesky" data-status="supported" data-order="20" data-k-action="follow" data-k-platform="bluesky">
         <th scope="row"><a href="/docs/reference/platforms/bluesky/#action-follow">Follow</a></th>
         <td data-label="Platform"><a class="action-table-plat" href="/docs/reference/platforms/bluesky/" title="Bluesky"><span class="logo-tile"><img src="/assets/platforms/bluesky-butterfly-blue.svg" alt="Bluesky" width="20" height="20"></span></a></td>
         <td data-label="What it does"><span>Name a target account. With --limit 0, follow that account, or several comma-separated. With a positive limit, follow up to that many of the target&#39;s followers, never the target itself.</span></td>
       </tr>
-      <tr data-row="follow:github" data-action="follow" data-platform="github" data-status="supported" data-order="19" data-k-action="follow" data-k-platform="github">
+      <tr data-row="follow:github" data-action="follow" data-platform="github" data-status="supported" data-order="21" data-k-action="follow" data-k-platform="github">
         <th scope="row"><a href="/docs/reference/platforms/github/#action-follow">Follow</a></th>
         <td data-label="Platform"><a class="action-table-plat" href="/docs/reference/platforms/github/" title="GitHub"><span class="logo-tile"><img src="/assets/platforms/github-invertocat-black.svg" alt="GitHub" width="20" height="20"></span></a></td>
         <td data-label="What it does"><span>Name a target account. With --limit 0, follow that account, or several comma-separated. With a positive limit, follow up to that many of the target&#39;s followers, never the target itself.</span></td>
       </tr>
-      <tr data-row="unfollow:bluesky" data-action="unfollow" data-platform="bluesky" data-status="supported" data-order="20" data-k-action="unfollow" data-k-platform="bluesky">
+      <tr data-row="unfollow:bluesky" data-action="unfollow" data-platform="bluesky" data-status="supported" data-order="22" data-k-action="unfollow" data-k-platform="bluesky">
         <th scope="row"><a href="/docs/reference/platforms/bluesky/#action-unfollow">Unfollow</a></th>
         <td data-label="Platform"><a class="action-table-plat" href="/docs/reference/platforms/bluesky/" title="Bluesky"><span class="logo-tile"><img src="/assets/platforms/bluesky-butterfly-blue.svg" alt="Bluesky" width="20" height="20"></span></a></td>
         <td data-label="What it does"><span>Unfollows one account.</span></td>
       </tr>
-      <tr data-row="accept:linkedin" data-action="accept" data-platform="linkedin" data-status="supported" data-order="21" data-k-action="accept" data-k-platform="linkedin">
+      <tr data-row="accept:linkedin" data-action="accept" data-platform="linkedin" data-status="supported" data-order="23" data-k-action="accept" data-k-platform="linkedin">
         <th scope="row"><a href="/docs/reference/platforms/linkedin/#action-accept">Accept</a></th>
         <td data-label="Platform"><a class="action-table-plat" href="/docs/reference/platforms/linkedin/" title="LinkedIn"><span class="logo-tile"><img src="/assets/platforms/linkedin-in-bug.png" alt="LinkedIn" width="20" height="20"></span></a></td>
         <td data-label="What it does"><span>Accepts the invitations people sent you, one at a time. An invitation LinkedIn flags with its &#34;Take care when connecting&#34; warning is skipped, never accepted. <span class="muted">At most 20 confirmed acceptances a run, unless you set --limit.</span></span></td>
       </tr>
-      <tr data-row="withdraw:linkedin" data-action="withdraw" data-platform="linkedin" data-status="supported" data-order="22" data-k-action="withdraw" data-k-platform="linkedin">
+      <tr data-row="withdraw:linkedin" data-action="withdraw" data-platform="linkedin" data-status="supported" data-order="24" data-k-action="withdraw" data-k-platform="linkedin">
         <th scope="row"><a href="/docs/reference/platforms/linkedin/#action-withdraw">Withdraw</a></th>
         <td data-label="Platform"><a class="action-table-plat" href="/docs/reference/platforms/linkedin/" title="LinkedIn"><span class="logo-tile"><img src="/assets/platforms/linkedin-in-bug.png" alt="LinkedIn" width="20" height="20"></span></a></td>
         <td data-label="What it does"><span>Withdraws invitations you sent that have waited 21 days or more, to free room for new ones. Shows a preview until you add --apply. <span class="muted">At most 20 confirmed withdrawals a run, unless you set --limit. LinkedIn blocks re-inviting a withdrawn person for up to three weeks.</span></span></td>
       </tr>
-      <tr data-row="find:bluesky" data-action="find" data-platform="bluesky" data-status="supported" data-order="23" data-k-action="find" data-k-platform="bluesky">
+      <tr data-row="find:bluesky" data-action="find" data-platform="bluesky" data-status="supported" data-order="25" data-k-action="find" data-k-platform="bluesky">
         <th scope="row"><a href="/docs/reference/platforms/bluesky/#action-find">Find</a></th>
         <td data-label="Platform"><a class="action-table-plat" href="/docs/reference/platforms/bluesky/" title="Bluesky"><span class="logo-tile"><img src="/assets/platforms/bluesky-butterfly-blue.svg" alt="Bluesky" width="20" height="20"></span></a></td>
         <td data-label="What it does"><span>Searches Bluesky posts for the words you give it.</span></td>
       </tr>
-      <tr data-row="find:github" data-action="find" data-platform="github" data-status="supported" data-order="24" data-k-action="find" data-k-platform="github">
+      <tr data-row="find:github" data-action="find" data-platform="github" data-status="supported" data-order="26" data-k-action="find" data-k-platform="github">
         <th scope="row"><a href="/docs/reference/platforms/github/#action-find">Find</a></th>
         <td data-label="Platform"><a class="action-table-plat" href="/docs/reference/platforms/github/" title="GitHub"><span class="logo-tile"><img src="/assets/platforms/github-invertocat-black.svg" alt="GitHub" width="20" height="20"></span></a></td>
-        <td data-label="What it does"><span>Lists the people around a repository, so you can choose whom to reach. <span class="muted">Lists only; it doesn&#39;t follow or react.</span></span></td>
+        <td data-label="What it does"><span>Searches issues and pull requests by query, with repository, type, and state filters. <span class="muted">Read-only. Issues and pull requests only, not repositories or code.</span></span></td>
       </tr>
-      <tr data-row="analytics:linkedin" data-action="analytics" data-platform="linkedin" data-status="supported" data-order="25" data-k-action="analytics" data-k-platform="linkedin">
+      <tr data-row="analytics:linkedin" data-action="analytics" data-platform="linkedin" data-status="supported" data-order="27" data-k-action="analytics" data-k-platform="linkedin">
         <th scope="row"><a href="/docs/reference/platforms/linkedin/#action-analytics">Analytics</a></th>
         <td data-label="Platform"><a class="action-table-plat" href="/docs/reference/platforms/linkedin/" title="LinkedIn"><span class="logo-tile"><img src="/assets/platforms/linkedin-in-bug.png" alt="LinkedIn" width="20" height="20"></span></a></td>
         <td data-label="What it does"><span>Reads your Page&#39;s analytics for a date range and saves them, so you can watch the trend. <span class="muted">Read-only.</span></span></td>
       </tr>
-      <tr data-row="analytics:x" data-action="analytics" data-platform="x" data-status="supported" data-order="26" data-k-action="analytics" data-k-platform="x (twitter)">
+      <tr data-row="analytics:x" data-action="analytics" data-platform="x" data-status="supported" data-order="28" data-k-action="analytics" data-k-platform="x (twitter)">
         <th scope="row"><a href="/docs/reference/platforms/x/#action-analytics">Analytics</a></th>
         <td data-label="Platform"><a class="action-table-plat" href="/docs/reference/platforms/x/" title="X (Twitter)"><span class="logo-tile"><img src="/assets/platforms/x-logo-black.png" alt="X (Twitter)" width="20" height="20"></span></a></td>
         <td data-label="What it does"><span>Records your follower and following counts on each run, so you can watch the trend. <span class="muted">Read-only.</span></span></td>
       </tr>
-      <tr data-row="analytics:bluesky" data-action="analytics" data-platform="bluesky" data-status="supported" data-order="27" data-k-action="analytics" data-k-platform="bluesky">
+      <tr data-row="analytics:bluesky" data-action="analytics" data-platform="bluesky" data-status="supported" data-order="29" data-k-action="analytics" data-k-platform="bluesky">
         <th scope="row"><a href="/docs/reference/platforms/bluesky/#action-analytics">Analytics</a></th>
         <td data-label="Platform"><a class="action-table-plat" href="/docs/reference/platforms/bluesky/" title="Bluesky"><span class="logo-tile"><img src="/assets/platforms/bluesky-butterfly-blue.svg" alt="Bluesky" width="20" height="20"></span></a></td>
         <td data-label="What it does"><span>Records your follower and following counts on each run, so you can watch the trend. <span class="muted">Read-only.</span></span></td>

@@ -31,7 +31,7 @@
     <link rel="icon" href="/favicon.ico" sizes="32x32">
     <link rel="icon" href="/assets/brand/logo/blowhorn-favicon-32.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/assets/brand/logo/blowhorn-apple-touch-icon-180.png">
-<link rel="stylesheet" href="/css/site.min.111a16af4fc5fc2de0d0499c67e6deccc1e7037fe31b8affe15d16804852aa1e.css">
+<link rel="stylesheet" href="/css/site.min.20fc3847b763c726608d2d0a8087baddc87e2a48250a8a8457113c0efeabd3b4.css">
 
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -506,13 +506,17 @@
                 <td>Comments on the Hacker News item your post is addressed to, under your name.</td>
                 <td class="muted">None</td>
               </tr><tr class="agent-actions-first">
-                <th scope="rowgroup" rowspan="2" class="agent-actions-platform"><a href="/docs/reference/platforms/slack/"><span class="logo-tile"><img src="/assets/platforms/slack-mark.svg" alt="" width="28" height="28"></span><span>Slack</span></a></th>
+                <th scope="rowgroup" rowspan="3" class="agent-actions-platform"><a href="/docs/reference/platforms/slack/"><span class="logo-tile"><img src="/assets/platforms/slack-mark.svg" alt="" width="28" height="28"></span><span>Slack</span></a></th>
                 <td class="agent-actions-name"><a href="/docs/reference/platforms/slack/#action-post">Post</a></td>
                 <td>Sends a message as you to a channel or to a person, as #channel, @user, a channel ID, or a channel link. Shows a preview until you confirm.</td>
                 <td class="muted">One profile sends per run. A target Blowhorn can&#39;t read is refused, never sent somewhere else.</td>
               </tr><tr>
                 <td class="agent-actions-name"><a href="/docs/reference/platforms/slack/#action-reply">Reply</a></td>
                 <td>Replies in a thread when you give it the link to the message.</td>
+                <td class="muted">None</td>
+              </tr><tr>
+                <td class="agent-actions-name"><a href="/docs/reference/platforms/slack/#action-react">React</a></td>
+                <td>Adds an emoji reaction to a message. A reaction already there is left as-is. Take it back with --remove.</td>
                 <td class="muted">None</td>
               </tr><tr class="agent-actions-first">
                 <th scope="rowgroup" rowspan="7" class="agent-actions-platform"><a href="/docs/reference/platforms/bluesky/"><span class="logo-tile"><img src="/assets/platforms/bluesky-butterfly-blue.svg" alt="" width="28" height="28"></span><span>Bluesky</span></a></th>
@@ -544,18 +548,22 @@
                 <td>Records your follower and following counts on each run, so you can watch the trend.</td>
                 <td class="muted">Read-only.</td>
               </tr><tr class="agent-actions-first">
-                <th scope="rowgroup" rowspan="3" class="agent-actions-platform"><a href="/docs/reference/platforms/github/"><span class="logo-tile"><img src="/assets/platforms/github-invertocat-black.svg" alt="" width="28" height="28"></span><span>GitHub</span></a></th>
+                <th scope="rowgroup" rowspan="4" class="agent-actions-platform"><a href="/docs/reference/platforms/github/"><span class="logo-tile"><img src="/assets/platforms/github-invertocat-black.svg" alt="" width="28" height="28"></span><span>GitHub</span></a></th>
                 <td class="agent-actions-name"><a href="/docs/reference/platforms/github/#action-react">React</a></td>
                 <td>Adds the five upbeat reactions (&#43;1, laugh, hooray, heart, rocket) to an issue or pull request from each of your profiles. Running it again adds none of them twice.</td>
                 <td class="muted">GitHub doesn&#39;t publish posts; it needs an issue or pull request link.</td>
+              </tr><tr>
+                <td class="agent-actions-name"><a href="/docs/reference/platforms/github/#action-star">Star</a></td>
+                <td>Stars each named repository from every selected profile, over the REST API. A repository already starred is counted apart, never starred twice.</td>
+                <td class="muted">GitHub only. Repositories are named on the command line; star cannot be scheduled.</td>
               </tr><tr>
                 <td class="agent-actions-name"><a href="/docs/reference/platforms/github/#action-follow">Follow</a></td>
                 <td>Name a target account. With --limit 0, follow that account, or several comma-separated. With a positive limit, follow up to that many of the target&#39;s followers, never the target itself.</td>
                 <td class="muted">None</td>
               </tr><tr>
                 <td class="agent-actions-name"><a href="/docs/reference/platforms/github/#action-find">Find</a></td>
-                <td>Lists the people around a repository, so you can choose whom to reach.</td>
-                <td class="muted">Lists only; it doesn&#39;t follow or react.</td>
+                <td>Searches issues and pull requests by query, with repository, type, and state filters.</td>
+                <td class="muted">Read-only. Issues and pull requests only, not repositories or code.</td>
               </tr>
             </tbody>
           </table>

@@ -45,7 +45,7 @@
     <link rel="apple-touch-icon" href="/assets/brand/logo/blowhorn-apple-touch-icon-180.png"><link rel="preload" href="/scss/main.min.e160ee0f1470a9e785221c16912777c236fedbb0c8ef27e3b9b728e96d70e6c7.css" as="style" integrity="sha256-4WDuDxRwqeeFIhwWkSd3wjb&#43;27DI7yfjubco6W1w5sc=" crossorigin="anonymous">
 <link href="/scss/main.min.e160ee0f1470a9e785221c16912777c236fedbb0c8ef27e3b9b728e96d70e6c7.css" rel="stylesheet" integrity="sha256-4WDuDxRwqeeFIhwWkSd3wjb&#43;27DI7yfjubco6W1w5sc=" crossorigin="anonymous">
 
-<link rel="stylesheet" href="/css/site.min.111a16af4fc5fc2de0d0499c67e6deccc1e7037fe31b8affe15d16804852aa1e.css">
+<link rel="stylesheet" href="/css/site.min.20fc3847b763c726608d2d0a8087baddc87e2a48250a8a8457113c0efeabd3b4.css">
 
     <script src="/js/vendor/jquery.min.fc9a93dd241f6b045cbff0481cf4e1901becd0e12fb45166a8f17f95823f0b1a.js"></script>
     <script src="/js/vendor/lunr.min.d802a4db88ab7be6be90d8c44a31a0f1697db28c254179baa75e704d51723068.js"></script>
@@ -344,7 +344,7 @@
   <form class="td-sidebar__search d-flex align-items-center">
     <div class="td-search td-search--offline">
       <div class="td-search__icon"></div>
-      <input type="search" name="q" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.c50bf662616a7cd9ad89e6cafd024164.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
+      <input type="search" name="q" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.9b1cd4586685fda9ecc78ce76e32bec3.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
       <button type="submit" class="visually-hidden">Search this site…</button>
     </div>
     <button class="btn btn-link td-sidebar__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#td-section-nav" aria-controls="td-section-nav" aria-expanded="false" aria-label="Toggle section navigation">
@@ -722,6 +722,10 @@ ad-hoc message with no queue activity.</p>
         <th scope="row"><a href="#action-reply">Reply</a></th>
         <td data-label="What it does">Replies in a thread when you give it the link to the message.</td>
         <td data-label="Limits / notes">None</td>
+      </tr><tr>
+        <th scope="row"><a href="#action-react">React</a></th>
+        <td data-label="What it does">Adds an emoji reaction to a message. A reaction already there is left as-is. Take it back with --remove.</td>
+        <td data-label="Limits / notes">None</td>
       </tr>
   </tbody>
 </table>
@@ -827,6 +831,57 @@ ad-hoc message with no queue activity.</p>
     <p class="caption muted">The Blowhorn skill teaches your agent this action: read first, rehearse, then ask before it fires.</p><p class="caption"><a href="/agents/claude-code/">Set up the skill</a></p>
   </div>
   <p class="visually-hidden">slack Reply examples</p>
+</div>
+</section><section class="action-example" id="action-react" aria-labelledby="action-react-title">
+  <h3 id="action-react-title" class="h3">React</h3>
+  <div class="tabs" data-tabs data-tabs-group="surface" data-tabs-id="ex-slack-react">
+  <div class="tabs-list">
+    <a class="tabs-tab" id="ex-slack-react-tab-app" href="#ex-slack-react-app" data-tab="app" data-tab-status="placeholder">App</a>
+    <a class="tabs-tab is-on" id="ex-slack-react-tab-cli" href="#ex-slack-react-cli" data-tab="cli" data-tab-status="available">CLI</a>
+    <a class="tabs-tab" id="ex-slack-react-tab-rest" href="#ex-slack-react-rest" data-tab="rest" data-tab-status="placeholder">REST API</a>
+    <a class="tabs-tab" id="ex-slack-react-tab-mcp" href="#ex-slack-react-mcp" data-tab="mcp" data-tab-status="available">MCP</a>
+    <a class="tabs-tab" id="ex-slack-react-tab-skill" href="#ex-slack-react-skill" data-tab="skill" data-tab-status="available">Skill</a>
+  </div>
+  <div class="tabs-panel" id="ex-slack-react-app" data-tab-panel="app" data-tab-index="0">
+    <div class="tabs-soon"><p class="ui">Screenshot coming soon</p><p class="caption muted">Drop a PNG at <code>assets/docs/actions/slack/react.png</code> to fill this pane.</p></div>
+  </div>
+  <div class="tabs-panel" id="ex-slack-react-cli" data-tab-panel="cli" data-tab-index="1">
+    <figure class="term term-prompt" data-lang="bash">
+  <figcaption class="term-bar">
+    <span class="term-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="term-title">terminal</span>
+    <span class="term-lang" aria-hidden="true">Shell</span>
+    <button type="button" class="term-copy" aria-label="Copy terminal to clipboard" hidden>
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg>
+      <span class="term-copy-text">Copy</span>
+    </button>
+  </figcaption>
+  <div class="term-body"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="term-ps" aria-hidden="true">$ </span>blowhorn slack react --profile work --target <span class="s2">&#34;https://acme.slack.com/archives/C0123/p1776000000000100&#34;</span> --emoji white_check_mark</span></span></code></pre></div></div>
+  <span class="term-status visually-hidden" role="status" aria-live="polite"></span>
+</figure><p class="caption"><a href="/docs/reference/cli/slack/">CLI reference</a></p>
+  </div>
+  <div class="tabs-panel" id="ex-slack-react-rest" data-tab-panel="rest" data-tab-index="2">
+    <div class="tabs-soon"><p class="ui">Coming soon</p><p class="caption muted">The Blowhorn REST API is coming soon. Until then, use the CLI or MCP.</p></div>
+  </div>
+  <div class="tabs-panel" id="ex-slack-react-mcp" data-tab-panel="mcp" data-tab-index="3">
+    <p class="caption muted">Ask an assistant connected to the Blowhorn MCP server. Writes come back as a dry run first; nothing goes out until you say go. <a href="/ai/mcp/">Blowhorn MCP server</a></p><figure class="term" data-lang="text">
+  <figcaption class="term-bar">
+    <span class="term-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="term-title">prompt</span>
+    <span class="term-lang" aria-hidden="true">Text</span>
+    <button type="button" class="term-copy" aria-label="Copy prompt to clipboard" hidden>
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg>
+      <span class="term-copy-text">Copy</span>
+    </button>
+  </figcaption>
+  <div class="term-body"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Dry-run adding a white_check_mark reaction to https://acme.slack.com/archives/C0123/p1776000000000100 from my work profile. Show me what would happen and wait for my go before you confirm.</span></span></code></pre></div></div>
+  <span class="term-status visually-hidden" role="status" aria-live="polite"></span>
+</figure>
+  </div>
+  <div class="tabs-panel" id="ex-slack-react-skill" data-tab-panel="skill" data-tab-index="4">
+    <p class="caption muted">The Blowhorn skill teaches your agent this action: read first, rehearse, then ask before it fires.</p><p class="caption"><a href="/agents/claude-code/">Set up the skill</a></p>
+  </div>
+  <p class="visually-hidden">slack React examples</p>
 </div>
 </section>
 

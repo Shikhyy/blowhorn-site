@@ -45,7 +45,7 @@
     <link rel="apple-touch-icon" href="/assets/brand/logo/blowhorn-apple-touch-icon-180.png"><link rel="preload" href="/scss/main.min.e160ee0f1470a9e785221c16912777c236fedbb0c8ef27e3b9b728e96d70e6c7.css" as="style" integrity="sha256-4WDuDxRwqeeFIhwWkSd3wjb&#43;27DI7yfjubco6W1w5sc=" crossorigin="anonymous">
 <link href="/scss/main.min.e160ee0f1470a9e785221c16912777c236fedbb0c8ef27e3b9b728e96d70e6c7.css" rel="stylesheet" integrity="sha256-4WDuDxRwqeeFIhwWkSd3wjb&#43;27DI7yfjubco6W1w5sc=" crossorigin="anonymous">
 
-<link rel="stylesheet" href="/css/site.min.111a16af4fc5fc2de0d0499c67e6deccc1e7037fe31b8affe15d16804852aa1e.css">
+<link rel="stylesheet" href="/css/site.min.20fc3847b763c726608d2d0a8087baddc87e2a48250a8a8457113c0efeabd3b4.css">
 
     <script src="/js/vendor/jquery.min.fc9a93dd241f6b045cbff0481cf4e1901becd0e12fb45166a8f17f95823f0b1a.js"></script>
     <script src="/js/vendor/lunr.min.d802a4db88ab7be6be90d8c44a31a0f1697db28c254179baa75e704d51723068.js"></script>
@@ -344,7 +344,7 @@
   <form class="td-sidebar__search d-flex align-items-center">
     <div class="td-search td-search--offline">
       <div class="td-search__icon"></div>
-      <input type="search" name="q" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.c50bf662616a7cd9ad89e6cafd024164.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
+      <input type="search" name="q" class="td-search__input form-control" placeholder="Search this site…" aria-label="Search this site…" autocomplete="off" data-offline-search-index-json-src="/offline-search-index.9b1cd4586685fda9ecc78ce76e32bec3.json" data-offline-search-base-href="/" data-offline-search-max-results="10">
       <button type="submit" class="visually-hidden">Search this site…</button>
     </div>
     <button class="btn btn-link td-sidebar__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#td-section-nav" aria-controls="td-section-nav" aria-expanded="false" aria-label="Toggle section navigation">
@@ -738,13 +738,17 @@ written. See <a href="/docs/how-to/grow/squatter-sweep/">Sweep stalled GitHub as
         <td data-label="What it does">Adds the five upbeat reactions (&#43;1, laugh, hooray, heart, rocket) to an issue or pull request from each of your profiles. Running it again adds none of them twice.</td>
         <td data-label="Limits / notes">GitHub doesn&#39;t publish posts; it needs an issue or pull request link.</td>
       </tr><tr>
+        <th scope="row"><a href="#action-star">Star</a></th>
+        <td data-label="What it does">Stars each named repository from every selected profile, over the REST API. A repository already starred is counted apart, never starred twice.</td>
+        <td data-label="Limits / notes">GitHub only. Repositories are named on the command line; star cannot be scheduled.</td>
+      </tr><tr>
         <th scope="row"><a href="#action-follow">Follow</a></th>
         <td data-label="What it does">Name a target account. With --limit 0, follow that account, or several comma-separated. With a positive limit, follow up to that many of the target&#39;s followers, never the target itself.</td>
         <td data-label="Limits / notes">None</td>
       </tr><tr>
         <th scope="row"><a href="#action-find">Find</a></th>
-        <td data-label="What it does">Lists the people around a repository, so you can choose whom to reach.</td>
-        <td data-label="Limits / notes">Lists only; it doesn&#39;t follow or react.</td>
+        <td data-label="What it does">Searches issues and pull requests by query, with repository, type, and state filters.</td>
+        <td data-label="Limits / notes">Read-only. Issues and pull requests only, not repositories or code.</td>
       </tr>
   </tbody>
 </table>
@@ -799,6 +803,57 @@ written. See <a href="/docs/how-to/grow/squatter-sweep/">Sweep stalled GitHub as
     <p class="caption muted">The Blowhorn skill teaches your agent this action: read first, rehearse, then ask before it fires.</p><p class="caption"><a href="/agents/claude-code/">Set up the skill</a></p>
   </div>
   <p class="visually-hidden">github React examples</p>
+</div>
+</section><section class="action-example" id="action-star" aria-labelledby="action-star-title">
+  <h3 id="action-star-title" class="h3">Star</h3>
+  <div class="tabs" data-tabs data-tabs-group="surface" data-tabs-id="ex-github-star">
+  <div class="tabs-list">
+    <a class="tabs-tab" id="ex-github-star-tab-app" href="#ex-github-star-app" data-tab="app" data-tab-status="placeholder">App</a>
+    <a class="tabs-tab is-on" id="ex-github-star-tab-cli" href="#ex-github-star-cli" data-tab="cli" data-tab-status="available">CLI</a>
+    <a class="tabs-tab" id="ex-github-star-tab-rest" href="#ex-github-star-rest" data-tab="rest" data-tab-status="placeholder">REST API</a>
+    <a class="tabs-tab" id="ex-github-star-tab-mcp" href="#ex-github-star-mcp" data-tab="mcp" data-tab-status="available">MCP</a>
+    <a class="tabs-tab" id="ex-github-star-tab-skill" href="#ex-github-star-skill" data-tab="skill" data-tab-status="available">Skill</a>
+  </div>
+  <div class="tabs-panel" id="ex-github-star-app" data-tab-panel="app" data-tab-index="0">
+    <div class="tabs-soon"><p class="ui">Screenshot coming soon</p><p class="caption muted">Drop a PNG at <code>assets/docs/actions/github/star.png</code> to fill this pane.</p></div>
+  </div>
+  <div class="tabs-panel" id="ex-github-star-cli" data-tab-panel="cli" data-tab-index="1">
+    <figure class="term term-prompt" data-lang="bash">
+  <figcaption class="term-bar">
+    <span class="term-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="term-title">terminal</span>
+    <span class="term-lang" aria-hidden="true">Shell</span>
+    <button type="button" class="term-copy" aria-label="Copy terminal to clipboard" hidden>
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg>
+      <span class="term-copy-text">Copy</span>
+    </button>
+  </figcaption>
+  <div class="term-body"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="term-ps" aria-hidden="true">$ </span>blowhorn star --platform github --profile personal --repo acme/widgets --dry-run</span></span></code></pre></div></div>
+  <span class="term-status visually-hidden" role="status" aria-live="polite"></span>
+</figure><p class="caption"><a href="/docs/reference/cli/star/">CLI reference</a></p>
+  </div>
+  <div class="tabs-panel" id="ex-github-star-rest" data-tab-panel="rest" data-tab-index="2">
+    <div class="tabs-soon"><p class="ui">Coming soon</p><p class="caption muted">The Blowhorn REST API is coming soon. Until then, use the CLI or MCP.</p></div>
+  </div>
+  <div class="tabs-panel" id="ex-github-star-mcp" data-tab-panel="mcp" data-tab-index="3">
+    <p class="caption muted">Ask an assistant connected to the Blowhorn MCP server. Writes come back as a dry run first; nothing goes out until you say go. <a href="/ai/mcp/">Blowhorn MCP server</a></p><figure class="term" data-lang="text">
+  <figcaption class="term-bar">
+    <span class="term-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="term-title">prompt</span>
+    <span class="term-lang" aria-hidden="true">Text</span>
+    <button type="button" class="term-copy" aria-label="Copy prompt to clipboard" hidden>
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg>
+      <span class="term-copy-text">Copy</span>
+    </button>
+  </figcaption>
+  <div class="term-body"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Dry-run starring acme/widgets on GitHub from my personal profile. Show me what would happen and wait for my go before you confirm.</span></span></code></pre></div></div>
+  <span class="term-status visually-hidden" role="status" aria-live="polite"></span>
+</figure>
+  </div>
+  <div class="tabs-panel" id="ex-github-star-skill" data-tab-panel="skill" data-tab-index="4">
+    <p class="caption muted">The Blowhorn skill teaches your agent this action: read first, rehearse, then ask before it fires.</p><p class="caption"><a href="/agents/claude-code/">Set up the skill</a></p>
+  </div>
+  <p class="visually-hidden">github Star examples</p>
 </div>
 </section><section class="action-example" id="action-follow" aria-labelledby="action-follow-title">
   <h3 id="action-follow-title" class="h3">Follow</h3>
@@ -875,9 +930,9 @@ written. See <a href="/docs/how-to/grow/squatter-sweep/">Sweep stalled GitHub as
       <span class="term-copy-text">Copy</span>
     </button>
   </figcaption>
-  <div class="term-body"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="term-ps" aria-hidden="true">$ </span>blowhorn <span class="nb">source</span> --platform github --profile personal --repo layer5io/meshery --audience stargazers --dry-run</span></span></code></pre></div></div>
+  <div class="term-body"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="term-ps" aria-hidden="true">$ </span>blowhorn find --platform github --query <span class="s2">&#34;service mesh&#34;</span> --repo meshery/meshery --type issue --state open --profile company</span></span></code></pre></div></div>
   <span class="term-status visually-hidden" role="status" aria-live="polite"></span>
-</figure><p class="caption"><a href="/docs/reference/cli/source/">CLI reference</a></p>
+</figure><p class="caption"><a href="/docs/reference/cli/find/">CLI reference</a></p>
   </div>
   <div class="tabs-panel" id="ex-github-find-rest" data-tab-panel="rest" data-tab-index="2">
     <div class="tabs-soon"><p class="ui">Coming soon</p><p class="caption muted">The Blowhorn REST API is coming soon. Until then, use the CLI or MCP.</p></div>
@@ -893,7 +948,7 @@ written. See <a href="/docs/how-to/grow/squatter-sweep/">Sweep stalled GitHub as
       <span class="term-copy-text">Copy</span>
     </button>
   </figcaption>
-  <div class="term-body"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">List the first 20 stargazers of layer5io/meshery so I can choose whom to reach; read only, nothing to confirm, and do not follow anyone.</span></span></code></pre></div></div>
+  <div class="term-body"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Search GitHub for open issues about service mesh in meshery/meshery and show me the results (read only, nothing to confirm).</span></span></code></pre></div></div>
   <span class="term-status visually-hidden" role="status" aria-live="polite"></span>
 </figure>
   </div>
