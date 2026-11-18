@@ -18759,6 +18759,10 @@ date: "2026-11-18"
 
 On the night of Sunday, September 20, 2026, Amazon cut off Meta's Muse agent, twelve days after it launched. Shoppers who sent Muse to Amazon.com met a notice: continued access by an unauthorized AI agent violates Amazon's Conditions of Use. The block is still in force, and Amazon has never said how it detects Muse. That silence is the interesting part. What a platform can see about an agent, and what it cannot, decides where the line falls for everyone building with agents.
 
+![The General, one of the Blowhorn troops, in charge of strategy and results](/assets/brand/troops/general-640.webp)
+
+*The General: strategy and results.*
+
 ## What happened
 
 Amazon wrote the rule first. On August 14, 2026, its Conditions of Use gained an "Agents" section: an agent must identify itself at all times, including `Agent/[agent name]` in the user-agent string of every request; must not mimic human keystroke or navigation speed; must not solve or dodge CAPTCHAs; and must stop when Amazon asks it to.
@@ -18778,6 +18782,10 @@ Start with the caveat: Amazon has never disclosed the mechanism. What follows is
 **Fingerprint.** DataDome compared live Muse sessions across unrelated sites and found the overlap in environmental signal "almost total, the kind of match you only get from the same sandboxed image being deployed." [Fingerprint](https://fingerprint.com/blog/how-to-detect-meta-muse-ai-agent/) labels Muse traffic `bot_type: "meta_muse"` with high confidence. And the concealment is itself a signal: [Inc.'s code inspection](https://www.inc.com/jason-aten/meta-keeps-apologizing-for-muse-its-explanations-miss-the-point-entirely/91409363) found Muse hides `navigator.webdriver`, fakes plugin values, and checks pages for CAPTCHAs and Cloudflare Ray IDs. Spoofed values that disagree across contexts give the game away.
 
 **Behavior.** [Verisoul](https://www.verisoul.ai/agents/meta-muse) reports bot-like interaction patterns across Muse sessions. Cequence noted that a browser-version update spiked from 0% to 90% of Muse traffic in days. A fleet that updates as one is fingerprintable.
+
+![A swarm of tiny identical charcoal bots doing the same thing over and over.](/assets/brand/troops/bot-swarm-640.webp)
+
+*A fleet that moves as one is easy to spot.*
 
 **The inference.** [Vouched](https://www.vouched.id/learn/blog/muse-is-an-agent-but-it-doesnt-want-you-to-know) tested asking Muse to use Firefox through its own egress proxy, and the block lifted. Its conclusion, that Amazon most likely keys on the cloud browser's Chromium fingerprint, is inference, not Amazon's account. A headed Chromium on a Raspberry Pi at home also loaded Amazon without a CAPTCHA. Network plus fingerprint both matter.
 
