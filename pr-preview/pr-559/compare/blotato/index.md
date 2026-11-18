@@ -42,4 +42,4 @@ Platforms are cracking down on bots while feeds fill with generated content nobo
 
 **Is Blotato better than Blowhorn?** For AI content generation and API publishing at volume, yes. For amplification through real people on developer networks, we think Blowhorn is the better fit.
 
-[Download Blowhorn for Mac](/pr-preview/pr-559/download/)
+[Download](/pr-preview/pr-559/download/)

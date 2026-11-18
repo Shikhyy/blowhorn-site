@@ -43,4 +43,4 @@ Sprout measures conversations beautifully. Blowhorn's job is to start more of th
 
 **Can Blowhorn replace Sprout's reporting?** No. Blowhorn's analytics cover LinkedIn, X and Bluesky across all your computers, which is useful but not a reporting suite.
 
-[Download Blowhorn for Mac](/pr-preview/pr-559/download/)
+[Download](/pr-preview/pr-559/download/)

@@ -40,4 +40,4 @@ Prospecting starts conversations one invite at a time. Blowhorn adds the other h
 
 **Is Waalaxy better than Blowhorn?** For straightforward prospecting campaigns, yes. For careful outreach from your own browser plus multi-network publishing and amplification, we think Blowhorn is the better fit.
 
-[Download Blowhorn for Mac](/pr-preview/pr-559/download/)
+[Download](/pr-preview/pr-559/download/)
