@@ -23,7 +23,7 @@
     <link rel="icon" href="/favicon.ico" sizes="32x32">
     <link rel="icon" href="/assets/brand/logo/blowhorn-favicon-32.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/assets/brand/logo/blowhorn-apple-touch-icon-180.png">
-<link rel="stylesheet" href="/css/site.min.55f71677c8590c070fc48752decf6c37f6905f3141750b4fbc50db152921b4b7.css">
+<link rel="stylesheet" href="/css/site.min.dcd5551a82d17985aaaaacdd152d892c70752adae47132bb55753c4000d652ab.css">
 
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -206,6 +206,15 @@
             <img src="/assets/brand/logo/blowhorn-app-icon.svg" alt="" width="96" height="96">
           </div>
         </header>
+        <section class="agent-section versus-film" aria-labelledby="film-title">
+          <div class="section-head">
+            <h2 id="film-title" class="h2">Blowhorn vs Buffer</h2><p class="muted">Duration 0:36</p>
+          </div>
+          <div class="vs-frame">
+            <video controls preload="metadata" playsinline poster="/assets/video/blowhorn-vs-buffer-poster.webp"><source src="/assets/video/blowhorn-vs-buffer.webm" type="video/webm"><source src="/assets/video/blowhorn-vs-buffer.mp4" type="video/mp4">
+            </video>
+          </div><p class="ui"><a href="/resources/videos/comparisons/blowhorn-vs-buffer/">Open the video page</a></p>
+        </section>
 
         <section class="agent-section" aria-labelledby="fit-title">
           <div class="section-head">
@@ -437,6 +446,15 @@
         </section>
       </div>
     </main>
+    <dialog class="video-dialog" data-video-dialog aria-labelledby="video-dialog-title">
+  <video controls preload="metadata" playsinline></video>
+  <div class="video-dialog-youtube" data-dialog-youtube hidden></div>
+  <div class="video-dialog-bar">
+    <span class="vd-title" id="video-dialog-title" data-dialog-title></span>
+    <button type="button" class="video-dialog-close" data-dialog-close>Close</button>
+  </div>
+</dialog>
+
 
     <footer class="site-footer">
       <div class="wrap">
@@ -497,6 +515,9 @@
         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"></path></svg>
       </button>
     </section>
+
+
+<script src="/js/resources.bundle.min.937990ac2d017ec7110ae1d8d7b52da183cf057c78ad7ed251d6d5f982f285a5.js" defer></script>
 
 
     <script src="/js/code-card.min.681cde1d563b320da97fa3f2c094be9469b193e726a2734eb3eb264d3a5e33e4.js" defer></script>

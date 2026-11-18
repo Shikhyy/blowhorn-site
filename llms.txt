@@ -250,12 +250,14 @@
 - [Articles](https://blowhorn.ai/resources/articles/index.md): Product intelligence, tips and field notes from the Blowhorn team: how to read your results, schedule well and stay inside every platform's rules.
 - [Videos](https://blowhorn.ai/resources/videos/index.md): Blowhorn videos - short films and walkthroughs on what Blowhorn does and how to get the most from it, organised by category.
 - [Getting started](https://blowhorn.ai/resources/videos/getting-started/index.md): Start here - what Blowhorn is, how it works, and the films that introduce it.
+- [Comparisons](https://blowhorn.ai/resources/videos/comparisons/index.md): Short films on how Blowhorn differs from a named tool, one competitor at a time.
 - [Features](https://blowhorn.ai/resources/videos/features/index.md): Short films on what Blowhorn can do, from actions beyond the API to a remote team working as one army.
 
 - [Amazon blocked Meta's Muse. Here is how it knew.](https://blowhorn.ai/resources/articles/how-amazon-detects-muse/index.md): Twelve days after Meta launched Muse, Amazon cut it off. Amazon never said how it spots the agent, but the evidence …
 - [Beyond the API](https://blowhorn.ai/resources/videos/features/beyond-the-api/index.md): Platform APIs keep some actions for approved partners. Blowhorn works the way you do, so it isn't limited to what those APIs expose.
 - [Not a bot. It's you.](https://blowhorn.ai/resources/videos/getting-started/not-a-bot/index.md): Platforms are done with bots. Blowhorn isn't one: it's you, on your own computers, under your own profiles, with your people beside you and you in command.
 - [Remote team, one army](https://blowhorn.ai/resources/videos/features/remote-team/index.md): Every teammate runs Blowhorn on their own computer, signed in as themselves. You see the whole fleet and every result in one place.
+- [Blowhorn vs Buffer](https://blowhorn.ai/resources/videos/comparisons/blowhorn-vs-buffer/index.md): Buffer holds your token and publishes from its cloud. Blowhorn runs as you, on your own computer, under your own profile.
 - [Failed posts are data: reading failure reasons and fixing the cause](https://blowhorn.ai/resources/articles/failed-posts-are-data/index.md): A failed post is a report, not just a red mark. The reason on the activity names the cause, and the fix follows from the …
 - [Pace is a feature: typing delay, concurrency and approval gates](https://blowhorn.ai/resources/articles/pace-is-a-feature/index.md): Speed feels like efficiency until a platform reads it as automation. Typing delay, concurrency and approval gates are …
 - [The open web is closing. Show up where your audience is.](https://blowhorn.ai/resources/articles/the-open-web-is-closing/index.md): AI answers now reuse Reddit's posts without sending the click, and Reddit is answering with logins and its app. Here is …
@@ -323,6 +325,7 @@
 ## Tags
 - [Tags](https://blowhorn.ai/tags/)
 - [Agents](https://blowhorn.ai/tags/agents/)
+- [Compare](https://blowhorn.ai/tags/compare/)
 - [Desktop-App](https://blowhorn.ai/tags/desktop-app/)
 - [In-Product-Intelligence](https://blowhorn.ai/tags/in-product-intelligence/)
 - [Overview](https://blowhorn.ai/tags/overview/)

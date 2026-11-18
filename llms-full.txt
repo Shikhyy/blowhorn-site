@@ -536,7 +536,7 @@ Blowhorn next to cloud schedulers, LinkedIn growth tools, employee advocacy suit
 --------------------------------------------------------------------------------
 title: "Blowhorn vs Buffer"
 url: https://blowhorn.ai/compare/buffer/index.md
-date: "2026-11-02"
+date: "2026-11-16"
 description: Blowhorn isn't a bot. It's you. Buffer is the friendliest way to keep a steady, approved calendar on many networks, with every computer switched off. Blowhorn is for the moment you need many real voices on the networks developers use.
 --------------------------------------------------------------------------------
 
@@ -848,13 +848,13 @@ Each policy shows the date it last changed at the top of its page, and every edi
 --------------------------------------------------------------------------------
 title: "Privacy"
 url: https://blowhorn.ai/legal/privacy/index.md
-date: "2026-11-11"
+date: "2026-11-16"
 description: What the Blowhorn website and the Blowhorn app store, where they store it, and what the app sends.
 --------------------------------------------------------------------------------
 
 ## This website
 
-blowhorn.ai is a static site served by GitHub Pages. Its fonts, images and styles are all served from this site. If you accept the cookie notice, it uses Google Analytics to count visits. That is its one script from a third party, and its cookies are the only ones the site sets. Until you accept, Google Analytics doesn't load and nothing is sent to Google. The site's other requests to another host are the download page's release lookup, the home page's recent-activity card, and the signup forms described below. The newsletter form in the footer sends nothing unless you submit it.
+blowhorn.ai is a static site served by GitHub Pages. Its fonts, images and styles are all served from this site. If you accept the cookie notice, it uses Google Analytics to count visits. Until you accept, Google Analytics doesn't load and nothing is sent to Google. The cookies the site itself sets are the analytics cookies described below, and only after you accept. The site's other requests to another host are the download page's release lookup, the home page's recent-activity card, the signup forms described below, and, if you press play on a YouTube film, the YouTube player described below. The newsletter form in the footer sends nothing unless you submit it.
 
 - GitHub serves the pages and keeps its own server logs. Those are covered by the [GitHub privacy statement](https://docs.github.com/site-policy/privacy-policies/github-privacy-statement).
 - The download page asks GitHub's public API for the newest release from your browser. That request reaches GitHub like any other request your browser makes, with your IP address and the usual request headers. With JavaScript off, no request is made and the download button still works.
@@ -869,6 +869,10 @@ Google Analytics 4 runs only if you choose Accept in the cookie notice.
 - How it's used: Layer5 uses the reports only to improve this site, and doesn't combine them with your Blowhorn account. Google's handling is covered by the [Google privacy policy](https://policies.google.com/privacy) and [how Google uses information from sites that use its services](https://policies.google.com/technologies/partner-sites).
 - If you accept, the site also keeps how you arrived (the campaign tags on the first page's address and the referring site's host, never the full address) in your browser's session storage (`blowhorn-docs-attribution`) and sends it with a few events on the MCP guides: a guide view, a code snippet copy and a click on an install or download link. Closing the tab or withdrawing consent removes it.
 - Your choice is kept in your browser's local storage (`blowhorn-consent`), so the notice doesn't come back. To change it, use **Cookie preferences** at the bottom of any page. If you withdraw consent, the page reloads without the tag. You can also delete the `_ga` cookies in your browser settings.
+
+### YouTube videos {#youtube-videos}
+
+Some video pages and comparison pages can play a short film hosted on YouTube. The page itself does not load YouTube. A poster and a play button are served from this site. If you press play, your browser loads the player from `www.youtube-nocookie.com` (a Google service). YouTube may then set cookies and receive your IP address and the usual request headers. Google's handling is covered by the [Google privacy policy](https://policies.google.com/privacy). If a film is not up yet, the page shows a placeholder and does not contact YouTube. With JavaScript off, the player does not load; the video's own page still describes the film.
 
 ### Newsletter signup
 
@@ -18164,6 +18168,13 @@ description: Start here - what Blowhorn is, how it works, and the films that int
 Start here - what Blowhorn is, how it works, and the films that introduce it.
 
 --------------------------------------------------------------------------------
+title: "Comparisons"
+url: https://blowhorn.ai/resources/videos/comparisons/index.md
+description: Short films on how Blowhorn differs from a named tool, one competitor at a time.
+--------------------------------------------------------------------------------
+Short films on how Blowhorn differs from a named tool, one competitor at a time.
+
+--------------------------------------------------------------------------------
 title: "Features"
 url: https://blowhorn.ai/resources/videos/features/index.md
 description: Short films on what Blowhorn can do, from actions beyond the API to a remote team working as one army.
@@ -18286,6 +18297,18 @@ description: Every teammate runs Blowhorn on their own computer, signed in as th
 --------------------------------------------------------------------------------
 
 Whole team on the line. Each one as themselves. A 24-second film with burned-in captions: no shared-password sheet. Every teammate runs Blowhorn on their own computer, signed in as themselves, over their own connection, and you see the whole fleet and every result in one pane of management.
+
+
+--------------------------------------------------------------------------------
+title: "Blowhorn vs Buffer"
+url: https://blowhorn.ai/resources/videos/comparisons/blowhorn-vs-buffer/index.md
+date: "2026-11-16"
+description: Buffer holds your token and publishes from its cloud. Blowhorn runs as you, on your own computer, under your own profile.
+--------------------------------------------------------------------------------
+
+A 36-second film from the Buffer comparison. Buffer is a fine calendar. It also holds your token, and its cloud is what publishes. Blowhorn is you, on your own computer, under your own profile. You stay in command: dry-run, one send, outreach hygiene, Take leave.
+
+See the full write-up on the [Blowhorn vs Buffer](/compare/buffer/) page.
 
 
 --------------------------------------------------------------------------------
@@ -19189,11 +19212,16 @@ annotated in the template:
   feeds and recency sorting need one), `layout` (always `video`),
   `duration` (`m:ss`, shown on the card).
 - `videoType`: `local` for a file the site hosts itself, with `mp4` and
-  `webm` paths under `assets/video/` and a 16:9 poster image. `youtube` is
-  reserved: YouTube embeds and YouTube-hosted poster images are new outside
-  hosts, so the first embedded video ships with a privacy-page update in the
-  same change, per the site's third-party rule. Self-hosted videos need no
-  privacy update, and their posters are the site's own files.
+  `webm` paths under `assets/video/` and a 16:9 poster image. `youtube` for
+  a film hosted on YouTube, with `youtubeId` set to the video id, or to
+  `TODO_YOUTUBE_ID` until the film is uploaded. A `TODO_YOUTUBE_ID`
+  placeholder does not contact YouTube. Real ids play only after the reader
+  presses play, through the `youtube` shortcode (or the same facade on a
+  comparison page). Posters must be files this site hosts; never use a
+  YouTube-hosted thumbnail. The privacy page and `check-third-party.py`
+  already disclose `www.youtube-nocookie.com` for this facade. Self-hosted
+  videos still need no YouTube disclosure, and their posters are the site's
+  own files.
 - `column`: exactly one of `desk-of-the-general`, `boot-camp` or
   `from-the-field`, as for articles above.
 - `categories`: the display name of the category folder the file lives in.
@@ -19490,6 +19518,12 @@ url: https://blowhorn.ai/tags/
 --------------------------------------------------------------------------------
 title: "Agents"
 url: https://blowhorn.ai/tags/agents/
+--------------------------------------------------------------------------------
+<no value>
+
+--------------------------------------------------------------------------------
+title: "Compare"
+url: https://blowhorn.ai/tags/compare/
 --------------------------------------------------------------------------------
 <no value>
 

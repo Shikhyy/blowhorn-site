@@ -23,7 +23,7 @@
     <link rel="icon" href="/favicon.ico" sizes="32x32">
     <link rel="icon" href="/assets/brand/logo/blowhorn-favicon-32.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/assets/brand/logo/blowhorn-apple-touch-icon-180.png">
-<link rel="stylesheet" href="/css/site.min.55f71677c8590c070fc48752decf6c37f6905f3141750b4fbc50db152921b4b7.css">
+<link rel="stylesheet" href="/css/site.min.dcd5551a82d17985aaaaacdd152d892c70752adae47132bb55753c4000d652ab.css">
 
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -264,11 +264,16 @@ feeds), <code>date</code> (<code>YYYY-MM-DD</code>; this site's model requires a
 feeds and recency sorting need one), <code>layout</code> (always <code>video</code>),
 <code>duration</code> (<code>m:ss</code>, shown on the card).</li>
 <li><code>videoType</code>: <code>local</code> for a file the site hosts itself, with <code>mp4</code> and
-<code>webm</code> paths under <code>assets/video/</code> and a 16:9 poster image. <code>youtube</code> is
-reserved: YouTube embeds and YouTube-hosted poster images are new outside
-hosts, so the first embedded video ships with a privacy-page update in the
-same change, per the site's third-party rule. Self-hosted videos need no
-privacy update, and their posters are the site's own files.</li>
+<code>webm</code> paths under <code>assets/video/</code> and a 16:9 poster image. <code>youtube</code> for
+a film hosted on YouTube, with <code>youtubeId</code> set to the video id, or to
+<code>TODO_YOUTUBE_ID</code> until the film is uploaded. A <code>TODO_YOUTUBE_ID</code>
+placeholder does not contact YouTube. Real ids play only after the reader
+presses play, through the <code>youtube</code> shortcode (or the same facade on a
+comparison page). Posters must be files this site hosts; never use a
+YouTube-hosted thumbnail. The privacy page and <code>check-third-party.py</code>
+already disclose <code>www.youtube-nocookie.com</code> for this facade. Self-hosted
+videos still need no YouTube disclosure, and their posters are the site's
+own files.</li>
 <li><code>column</code>: exactly one of <code>desk-of-the-general</code>, <code>boot-camp</code> or
 <code>from-the-field</code>, as for articles above.</li>
 <li><code>categories</code>: the display name of the category folder the file lives in.
