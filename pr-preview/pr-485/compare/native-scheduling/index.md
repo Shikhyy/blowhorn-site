@@ -38,4 +38,4 @@ A post tends to do best when real people react early. Blowhorn helps the profile
 
 **Why not just use LinkedIn's scheduler?** If you only post on LinkedIn from one profile, it's free and it works. Blowhorn helps when one announcement has to land on many networks and profiles at once.
 
-[Download Blowhorn for Mac](/pr-preview/pr-485/download/)
+[Download](/pr-preview/pr-485/download/)

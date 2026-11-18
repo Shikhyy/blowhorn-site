@@ -35,7 +35,9 @@ newer.
 `Local State` and `DevToolsActivePort`, and nothing else: never
 cookies, saved passwords, storage, or the keychain. It writes nothing
 there and opens no browser, DevTools, or network connection. Whether
-Chrome is running is one bounded process lookup. There are four
+Chrome is running is one bounded process lookup, scoped to that data
+directory: a Chrome on another tree (the attach-chrome Chrome, say) does
+not count. There are four
 exceptions. `blowhorn chrome extension-status` also reads each Chrome
 profile's `Secure Preferences` and `Preferences` for the extension's
 entry alone (see [its section](#blowhorn-chrome-extension-status)).
@@ -288,12 +290,11 @@ that handles them by default. It is opt-in while the two are compared:
 Any other value stops a run that needs to open Chrome, and names the two choices. With `rust`
 selected and the helper not built, the run stops and says how to build it;
 nothing falls back to the Python cold start. Either way the line on
-stderr, the codes and the messages are the same, with one known
-exception while the two are compared: an announcement that carries
-`NaN` or `Infinity` is `blowhorn-engine-1006` from both, worded as a
-damaged announcement by the helper and as a mismatch by the built-in.
-When the profile's bridge comes up in the moment between
-Blowhorn's check and the helper's, the helper opens nothing and the run
+stderr, the codes and the messages are the same, including an
+announcement that carries `NaN` or `Infinity`: both raise
+`blowhorn-engine-1006` and word it as a mismatch. When the profile's
+bridge comes up in the moment between Blowhorn's check and the helper's,
+the helper opens nothing and the run
 connects to it. On macOS the helper
 opens Chrome in the background (`open -g`), so it does not take focus from
 the app you are using. A helper built from an older checkout, whose codes
@@ -470,7 +471,7 @@ the `host_status` answer also says why, in `chrome_profile_reason`
 the extension rotates its nonce, so each copy becomes unique on the
 next ask, and the host answers the same nonce from a short cache while
 the rotation lands. The side panel explains instead of offering a
-mapping link it cannot act on: "This Chrome profile looks like a copy
+mapping link it cannot act on: "This looks like a copy
 of another one. Blowhorn is giving it its own identity."
 
 ## What a site sees: the user agent by driver
@@ -535,6 +536,7 @@ the same way:
 | --- | --- |
 | `side_tab` (the default) | an inactive tab right after the tab you are on, in your window |
 | `own_window` | the selected tab of one window of Blowhorn's own, opened without focus in Chrome's normal window state at the size of the window you used last and 56 px to its right, so it sits mostly behind yours with an edge showing. It holds its own Blowhorn tab group, collapsed or open as above. Blowhorn closes it when a run ends, unless you put a tab of your own in it or Blowhorn is waiting for you in it, and makes a new one for the next run. If you close it first, it makes a new one too |
+| `split_view` | a tab in a split view beside the tab you are on, in your window, on Chrome 155 or later. Your tab stays selected and the split tab is visible, so the page reads a real size and a real screen position. On an older Chrome, or when the split cannot be made, Blowhorn works in a window of its own instead, as `own_window` above |
 
 Either way nothing takes focus, your selected tab stays selected, and focus
 emulation is on as the extension mode says. The window is never minimized,
@@ -551,9 +553,10 @@ When your Chrome window fills the screen there is no room for the edge, so leave
 a little space on the right of your window, or use `side_tab`.
 
 With no Chrome window
-open, `own_window` stops the profile just as the side tab does. Set it on
+open, `own_window` stops the profile just as the side tab does, and `split_view`
+has no tab to split with, so it stops too. Set it on
 Settings, Chrome extension, or with `blowhorn chrome extension-mode --window
-own-window` (`side-tab`, or `default` to clear it); see
+split-view` (`own-window`, `side-tab`, or `default` to clear it); see
 [Choose where Blowhorn works in Chrome](/docs/how-to/settings/where-blowhorn-works/).
 
 ## Blowhorn's desktop (Spaces)
@@ -646,6 +649,7 @@ blowhorn chrome extension-mode classic      # save classic to your account
 blowhorn chrome extension-mode default      # clear it, so runs use background
 blowhorn chrome extension-mode --group open # keep the Blowhorn tab group open
 blowhorn chrome extension-mode --window own-window  # work in a window of its own, mostly behind yours
+blowhorn chrome extension-mode --window split-view  # work in a tab split beside yours, on Chrome 155 or later
 ```
 
 With no mode it reads your account setting from Blowhorn and writes
@@ -657,7 +661,7 @@ reports it with the change on top, and writes nothing; when the account cannot b
 and changes nothing. `--json` prints one object: `mode`,
 `source` (`rollback`, `account` or `default`), `account`, `account_error`,
 `rollback`, `rollback_error`, `features`, `group` and `group_account`, `window`
-(`side_tab` or `own_window`) and `window_account`, and `written`.
+(`side_tab`, `own_window` or `split_view`) and `window_account`, and `written`.
 
 ## `blowhorn chrome active-tab`
 

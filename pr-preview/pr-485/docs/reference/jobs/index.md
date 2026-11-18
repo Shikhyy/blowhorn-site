@@ -104,6 +104,19 @@ platform's own limit. The limits themselves
 are listed under
 [A limit the platform publishes is the one hard stop](/docs/how-to/settings/choose-your-rules-of-engagement/#a-limit-the-platform-publishes-is-the-one-hard-stop).
 
+## Visibility
+
+An activity may carry its own visibility: write `visibility=private`
+in its Params and that activity's completed runs stay inside your org,
+never appearing in the public activity feed on blowhorn.ai. Leave the
+entry out, or set it to `public`, and the activity follows your
+account's [Share my activity publicly](/docs/how-to/settings/share-activity/)
+setting. The account setting still wins: with it off, nothing from any
+activity appears in the feed. A word that is not `public` or `private`
+is refused when you save the activity. There is no separate control for
+it on the activity yet; the account switch in Settings is the only
+switch.
+
 ## Pause scopes
 
 An activity is claimed only when none of the three scopes says paused:

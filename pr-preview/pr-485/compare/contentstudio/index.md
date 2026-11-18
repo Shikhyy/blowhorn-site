@@ -44,4 +44,4 @@ ContentStudio publishes from its cloud while your laptop stays closed. Blowhorn 
 
 **Does Blowhorn support Instagram?** Not yet. Instagram, Facebook and YouTube are coming soon; TikTok is in development.
 
-[Download Blowhorn for Mac](/pr-preview/pr-485/download/)
+[Download](/pr-preview/pr-485/download/)

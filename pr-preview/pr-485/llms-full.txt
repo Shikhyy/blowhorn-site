@@ -73,7 +73,7 @@ description: You installed the Blowhorn browser extension. Three steps finish th
 
 ## 1. Download the Blowhorn app {#download-the-app}
 
-[Download Blowhorn](/download/), open the disk image and drag Blowhorn to Applications.
+[Download](/download/) the disk image, open it, and drag Blowhorn to Applications.
 
 ## 2. Sign in to your account {#sign-in}
 
@@ -3460,8 +3460,9 @@ After setup, both walks also check the console a new person sees:
   LinkedIn account in the local Cloud. Saving a daily Accept LinkedIn invitations from that picker
   stores one enabled routine in the local Cloud, and **Activity > Routines**
   lists it with its next run at the time the step typed. Home names no next run. The rail's status line
-  never shows a countdown: it says what this computer is doing, and otherwise it
-  keeps its own reason.
+  never shows a countdown. The walk reads the rail's duty kind: while this computer is on watch, the
+  duty switch's tooltip names the next run, and any other kind is checked against that kind's own line.
+  `run.json` records the kind and whether this Mac's service is registered.
 
 `empty-profile` covers
 a new organization with no planted logins. `sign-up` presses Create account,
@@ -3526,7 +3527,9 @@ a leftover registration from an earlier run is reported, never removed.
 Each step prints its name. Each variant writes its run to
 `data/cache/e2e/onboarding/<run-id>/` in the checkout, the directory the script
 prints at the start: `shots/` holds a screenshot per step, `logs/electron.log`
-the app's output, and `run.json` each step's outcome. A failure names the step,
+the app's output, and `run.json` each step's outcome. When the next-run step ran, `run.json` also
+records the rail's duty kind and whether this Mac's service is registered, so a failure says which
+branch it took. A failure names the step,
 leaves a screenshot of that screen, and records the failure in `run.json`. If
 the local Cloud stand-in raises, the check stops and prints that error. The
 folder is git-ignored and nothing prunes it, so delete old runs when you no
@@ -6786,7 +6789,7 @@ Output: json with `--json`, text otherwise.
 
 ## blowhorn chrome extension-mode
 
-Show or set how runs drive the Blowhorn Chrome extension. background is the default. Both modes open Blowhorn's tab inactive beside the tab you are on (or in its own window with `--window` own-window), in a Blowhorn group that is collapsed by default, and take a screenshot through the debugger without selecting the tab. Nothing brings the tab forward. classic keeps focus emulation on only while an action holds the debugger and sends input through the page. background turns focus emulation on from the first page and sends trusted input. With no MODE it reports the mode a run started now would use and where it comes from: the `BLOWHORN_EXTENSION_ROLLBACK` override, your Blowhorn account setting, or the background default. A job whose driver mode is extension-classic or extension-background outranks the account setting for that job. Setting MODE writes extensionMode to your account's Blowhorn preferences in your Blowhorn account (sign in first with `blowhorn auth login`); default clears it. `--group` collapsed or open writes chromeGroup the same way: how the Blowhorn tab group sits beside your tabs between steps. Collapsed is the default. `--window` side-tab or own-window writes chromeWindow the same way: where Blowhorn works. side-tab is an inactive tab beside your tabs, the default. own-window is one window of its own, mostly behind yours with an edge showing, opened without focus and closed when a run ends; on a Mac keep that edge showing, since a window fully covered, minimized, hidden or on another desktop reads like a background tab. `--json` emits the report as one object, for a script or the desktop app.
+Show or set how runs drive the Blowhorn Chrome extension. background is the default. Both modes open Blowhorn's tab inactive beside the tab you are on (or in its own window with `--window` own-window, or split beside it with `--window` split-view on Chrome 155 or later), in a Blowhorn group that is collapsed by default, and take a screenshot through the debugger without selecting the tab. Nothing brings the tab forward. classic keeps focus emulation on only while an action holds the debugger and sends input through the page. background turns focus emulation on from the first page and sends trusted input. With no MODE it reports the mode a run started now would use and where it comes from: the `BLOWHORN_EXTENSION_ROLLBACK` override, your Blowhorn account setting, or the background default. A job whose driver mode is extension-classic or extension-background outranks the account setting for that job. Setting MODE writes extensionMode to your account's Blowhorn preferences in your Blowhorn account (sign in first with `blowhorn auth login`); default clears it. `--group` collapsed or open writes chromeGroup the same way: how the Blowhorn tab group sits beside your tabs between steps. Collapsed is the default. `--window` side-tab, own-window or split-view writes chromeWindow the same way: where Blowhorn works. side-tab is an inactive tab beside your tabs, the default. own-window is one window of its own, mostly behind yours with an edge showing, opened without focus and closed when a run ends; on a Mac keep that edge showing, since a window fully covered, minimized, hidden or on another desktop reads like a background tab. split-view is a tab split beside yours on Chrome 155 or later, falling back to own-window on an older Chrome; the split tab stays visible, so the page reads a real outer size and a real screen position. `--json` emits the report as one object, for a script or the desktop app.
 
 ```text
 blowhorn chrome extension-mode [OPTIONS] [MODE]
@@ -6799,7 +6802,7 @@ blowhorn chrome extension-mode [OPTIONS] [MODE]
 | Flag | Type | Default | Description |
 | --- | --- | --- | --- |
 | `--group` | string |  | collapsed or open: how the Blowhorn tab group sits beside your tabs between steps. default clears the account setting (collapsed) |
-| `--window` | string |  | side-tab or own-window: where Blowhorn works, in an inactive tab beside your tabs or in a window of its own, mostly behind yours with an edge showing, that never takes focus (on a Mac, keep that edge showing). default clears the account setting (side-tab) |
+| `--window` | string |  | side-tab, own-window or split-view: where Blowhorn works, in an inactive tab beside your tabs, in a window of its own, mostly behind yours with an edge showing, that never takes focus (on a Mac, keep that edge showing), or split beside your tab on Chrome 155 or later, falling back to its own window on an older Chrome. default clears the account setting (side-tab) |
 | `--json` | boolean | `false` | Emit the report as JSON with a stable shape, for a script or the desktop app |
 | `--platform` | string |  | Accepted and ignored by `blowhorn chrome`: this command never acts on a platform, so `--platform` has no effect here -- including a value inherited from `BLOWHORN_PLATFORM` or defaults.platform in .blowhorn.yaml |
 | `--pace` | string |  | Accepted by `blowhorn chrome extension-mode` because `--pace` is a global flag, but this command does no paced work -- it sleeps between nothing -- so the value changes nothing about how it runs and appears only in the Pace column of the -v summary. Resolved as CLI flag, then `BLOWHORN_PACE`, then defaults.pace in .blowhorn.yaml (normal when none is set); an unrecognized value is rejected before anything runs |
@@ -6815,6 +6818,7 @@ blowhorn chrome extension-mode classic
 blowhorn chrome extension-mode default --json
 blowhorn chrome extension-mode --group open
 blowhorn chrome extension-mode --window own-window --json
+blowhorn chrome extension-mode --window split-view --json
 ```
 
 Output: json with `--json`, text otherwise.
@@ -10990,7 +10994,10 @@ blowhorn schedule resume
 
 The flagless pause writes a local file beside your config, so it works even
 when everything else is broken, and it survives a crash, a restart and a
-reboot. The service keeps running but claims nothing and exits 0.
+reboot. The service keeps running but claims nothing and exits 0. A pause
+you set while this computer is offline still counts: the local file is the
+record for this computer, and the change is carried into the next pass's
+record once your account answers again, so the other computers see it.
 Due times carry forward: a recurring activity that fell due during the pause runs
 once on resume, not once per missed interval.
 
@@ -11023,18 +11030,21 @@ computer sharing it honours them on its next claim; the flagless pause never
 touches your account. In the app every scope is one duty switch, reading
 **On duty** or **Off duty**:
 
-- **This computer** - the rail's switch and the popover's **This computer**
-  switch, the flagless pause above.
-- **The fleet** (every computer sharing your schedule, `--all`) - the
-  **Entire fleet** row on Home's Fleet card, **Take leave for the fleet** in
+- **This computer** - the rail's switch, the popover's **This computer**
+  switch, and this computer's row on Home's Fleet card, the flagless pause above.
+- **The fleet** (every computer running your activities, `--all`) - the
+  switch in the header of Home's Fleet card, **Take leave for the fleet** in
   Posture, or the popover's **Fleet** switch, which takes no reason. On Home,
-  the switch opens an optional reason under the row with two buttons: **Save**
+  the switch opens an optional reason under the header with two buttons: **Save**
   takes leave with the reason you typed, and **Skip** takes leave with no reason.
   Escape closes the reason and takes nothing. Clicking away keeps it open and
   takes nothing either. If the leave cannot be written, the reason stays put so
   you can press Save or Skip again. While the fleet is off duty,
-  the card shows who took it off duty, when and why, and this computer's row is
-  held until the fleet is back on duty.
+  the card names who took it off duty by their photo and first name (the photo
+  opens their public profile), shows the reason in quotes when one was given,
+  and a Since line with the full date and time on hover; when the account that
+  took leave cannot be named, it says "someone on your team". Each computer's
+  switch is held until the fleet is back on duty.
 - **This order** (`--activity N`) - the duty switch on the item's row in the
   Routines list or on its calendar chip, reading **On duty** or **Off duty**,
   and the same hold in the item's details as **On watch** or **Off watch**.
@@ -11045,8 +11055,10 @@ touches your account. In the app every scope is one duty switch, reading
   details (click the item and it opens in a dialog, a box over the screen)
   show who held it, when and why where the **When** row opens, with **Resume**.
 
-There is no switch for another computer: take leave on that computer from
-its own Blowhorn app, or take leave for the whole fleet.
+Home's Fleet card puts one switch on every computer in the list. This
+computer's switch is the same as the rail's. Another computer's switch shows
+the duty it last reported and is held: take leave on that computer from its
+own Blowhorn app, or take leave for the whole fleet.
 
 Lifting one scope leaves the other two as they were. A held activity still reads
 `due: yes` beside `paused: yes` in `blowhorn schedule list`: due keeps meaning
@@ -11249,6 +11261,22 @@ Blowhorn 1.100.0 through 2.0.1 had one such cause on every signed-in computer: t
 service's control connection lived inside the account's log folder, whose path is
 longer than macOS allows for one. Update Blowhorn, and the service starts on its
 own.
+
+## When the service runs but passes say Blowhorn is unreachable
+
+A pass that cannot reach your Blowhorn account is skipped and tried again on the next
+pass; the service itself is fine. Each failed attempt writes one line to that pass's log
+(and to the daily error log) saying why the connection failed:
+
+- `dns`: this Mac could not look up the address - check the network or VPN.
+- `timeout`: the request got no answer in time.
+- `tls`: the secure connection was refused or intercepted - a proxy or VPN is the usual cause.
+- `refused` or `reset`: something closed the connection.
+- `other`: none of the above; the line also names the error's type.
+
+The Service log on the Troubleshooting tab shows the end of the launcher's own error file,
+which is never cleared, so lines from an earlier version can sit beside today's.
+Check the **written** time and the version before reading one as current.
 
 ## A separate data folder
 
@@ -11946,7 +11974,7 @@ argv, each job resolves its own driver.
 --------------------------------------------------------------------------------
 title: "Choose where Blowhorn works in Chrome"
 url: /pr-preview/pr-485/docs/how-to/settings/where-blowhorn-works/index.md
-description: Keep Blowhorn's tab beside yours, or give it a window of its own mostly behind yours, in the app or from the command line.
+description: Keep Blowhorn's tab beside yours, split beside your tab, or give it a window of its own mostly behind yours, in the app or from the command line.
 --------------------------------------------------------------------------------
 
 
@@ -11960,10 +11988,13 @@ tab of its own. Your Blowhorn account has one setting for where that tab lives:
   opened without taking focus. Your window stays in front, your tab stays selected, and Blowhorn closes the
   window when a run ends, unless you put a tab of your own in it or it is waiting for you. Its tab sits in its own
   Blowhorn tab group.
+- **Split beside your tab.** On Chrome 155 or later, Blowhorn's tab opens in a split
+  view beside the tab you are on, visible, with your tab staying selected. On an
+  older Chrome it works in a window of its own instead, as above.
 
 On a Mac, a page in a tab you are not looking at reads its window size as zero,
-which a site can notice. A page in its own window can avoid that, so choose
-**In its own window, mostly behind yours** if that matters to you. Beside your tabs stays
+which a site can notice. A page in its own window or split beside your tab can avoid that, so choose
+**Split beside your tab** or **In its own window, mostly behind yours** if that matters to you. Beside your tabs stays
 the default.
 
 ## Keep that edge showing
@@ -11986,7 +12017,7 @@ reads it once when it starts.
 
 1. Open **Settings**, then **Setup**.
 2. On the **Chrome extension** card, under **Where Blowhorn works**, choose
-   **beside your tabs** or **in its own window, mostly behind yours**.
+   **beside your tabs**, **in its own window, mostly behind yours**, or **split beside your tab**.
 
 ## From the command line
 
@@ -11994,6 +12025,7 @@ Sign in first with `blowhorn auth login`, then:
 
 ```bash
 blowhorn chrome extension-mode --window own-window   # a window of its own, mostly behind yours
+blowhorn chrome extension-mode --window split-view   # a tab split beside yours, on Chrome 155 or later
 blowhorn chrome extension-mode --window side-tab     # an inactive tab beside yours
 blowhorn chrome extension-mode --window default      # clear it, so runs use the default
 blowhorn chrome extension-mode                       # show the setting a run would use
@@ -12003,7 +12035,7 @@ Add `--dry-run` to see what would be saved without saving it.
 
 ## What stays the same
 
-In both places Blowhorn never brings its tab or Chrome in front of what you are
+In all three places Blowhorn never brings its tab or Chrome in front of what you are
 doing. When it needs you, it turns its tab group red and opens it, and waits for
 you to click its tab. If you close Blowhorn's window, the next run makes a new
 one. If no Chrome window is open at all, the run stops and asks you to open one.
@@ -12296,7 +12328,11 @@ here and the next pass claims again.
 `/Applications/Blowhorn.app` is one app for every macOS user on the Mac.
 While another user on this Mac has Blowhorn open, or has its background
 service running after quitting it, the update says so and waits: it installs
-once they quit it and their service stops.
+once they quit it and their service stops. If `/Applications/Blowhorn.app`
+belongs to another account on this Mac, or your account can't write to the
+Applications folder, the update is not started and says why before anything
+is downloaded: update from the account that owns it, or reinstall Blowhorn
+from yours.
 
 ## What you see while it updates
 
@@ -12474,6 +12510,22 @@ blowhorn auth share-activity-publicly --on
 
 `--json` prints the same facts for a script. `--dry-run` with `--on` or
 `--off` reads the account and sends nothing.
+
+## One activity
+
+One activity can opt itself out while the account stays on: set
+`visibility=private` in that activity's Params. From the command line:
+
+```bash
+blowhorn schedule upsert --activity 7 --payload '{"Params":"visibility=private"}' --json
+```
+
+In the app, open the activity and add `visibility=private` to its raw
+params. Leave the entry out, or set it to `public`, and the activity
+follows the account setting above. The account setting still wins over
+the activity: with the account off, nothing from any activity appears
+in the feed, whatever an activity says. A word that is not `public` or
+`private` is refused when you save the activity.
 
 ## Related
 
@@ -13436,30 +13488,40 @@ To see which version you have, select Blowhorn in Applications and choose
 
 ## If an update left an old copy behind
 
-An in-app update keeps the previous version as a hidden copy in
-Applications, named `.Blowhorn-backup-<id>.app`, until the new version
-starts. Every copy carries Blowhorn's identity, so anything that opens
-Blowhorn without naming a path, a `blowhorn` command included, can open an
-old or broken copy instead and get this dialog.
+An in-app update keeps the previous version until the new one starts, in
+`~/Library/Caches/ai.blowhorn.desktop/update-backup-<id>`. That folder is not
+an application, so nothing opens it by mistake. Older versions of Blowhorn
+kept it in Applications, as a hidden copy named `.Blowhorn-backup-<id>.app`.
+Every such copy carries Blowhorn's identity, so anything that opens Blowhorn
+without naming a path, a `blowhorn` command included, can open an old or
+broken copy instead and get this dialog.
 
-Blowhorn removes these copies itself each time it starts. When it can't,
-usually because another account on this computer owns the copy, it shows
-the copy's path once, with a **copy command** button. To remove one by
-hand:
+Blowhorn moves any hidden copy out of Applications and removes it, and clears
+old backups from the cache, each time it starts. If a copy can't be removed
+it tries again on the next start, and only if that fails too does it show the
+copy's path and what macOS said, with a **copy command** button. It says
+another account owns the copy only when that is true. To remove one by hand:
 
-1. List the hidden copies:
+1. List the leftover copies:
 
    ```bash
-   ls -a /Applications ~/Applications | grep -E '^\.Blowhorn-(backup|update)-'
+   ls -a /Applications ~/Applications ~/Library/Caches/ai.blowhorn.desktop | grep -E '^(\.Blowhorn-(backup|update)-|update-backup-)'
    ```
 
-2. Tell macOS to forget each one, then delete it. Replace the path with
-   the one you found, whether it is `.Blowhorn-backup-` or
-   `.Blowhorn-update-`. `sudo` asks for an administrator password:
+2. For each hidden `.app` copy in Applications, whether it is
+   `.Blowhorn-backup-` or `.Blowhorn-update-`, tell macOS to forget it.
+   Replace the path with the one you found:
 
    ```bash
    /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -u '/Applications/.Blowhorn-backup-<id>.app'
+   ```
+
+3. Delete each copy. Replace the path with the one you found.
+   `sudo` asks for an administrator password:
+
+   ```bash
    sudo rm -rf '/Applications/.Blowhorn-backup-<id>.app'
+   sudo rm -rf ~/Library/Caches/ai.blowhorn.desktop/update-backup-<id>
    ```
 
 Never delete `/Applications/Blowhorn.app` itself this way.
@@ -13901,7 +13963,7 @@ activity, is locked. Once you are signed in, the account button stays usable. Se
 
 | Screen | Shows | Acts |
 |---|---|---|
-| Home (two tabs: **Today** and **Resources**) | Today: whether Blowhorn is working and whether it needs you, but never what runs next: an activity's next run is on Activity with Recurring selected, and the rail's duty toggle names the next one on hover; the Fleet card: computers known (this one and every other computer that has run here or reported lately), how many are on duty or off duty, fleet holds, who took the fleet off duty and why, this computer's row, and a row for each other computer saying **On duty**, **Off duty** or **Last pass failed** from the last pass its background service reported, or **Not reporting** when it has reported nothing in the last half hour; a computer that is not reporting is never counted on duty, and the card says **2 of 3 reporting** while any one is not; "Your draft was saved" once after setup, until you dismiss it or leave Home; beside them your results, and one card with **Recent activity** and **What went wrong** (it opens on what went wrong while something failed). Resources: ideas worth a try, the latest from Blowhorn - each piece labelled with its column, From the Desk of the General, From Boot Camp or From the Field - and the tips as a taught sequence: the next tip you have not seen yet, with its video, one at a time; opening a tip or choosing **Another tip** moves you on, a tip you have seen never comes back, and when you have seen them all the card says so and points to Resources. A newer release is offered on a card at the top of the results column, **Update to Blowhorn** and the version | the entire fleet's switch, which opens an optional reason with **Save** (takes leave with the reason) and **Skip** (takes leave with none) buttons (Escape closes it and takes nothing), or this computer's switch, on the Fleet card; open This computer from this computer's row; reconnect a signed-out account from the **Needs you** section at the top of Today: one full-row button per signed-out account, its platform's mark and **Reconnect** (naming the profile, **Reconnect @handle**, only where two signed-out accounts share a platform), which signs that account in again and reads **Reconnecting…** while it runs, and the **?** beside the title says which computer they are signed out on and how many scheduled posts wait (a Bluesky app password or a GitHub token opens Profiles instead); a sign-in that does not finish leaves the row with a note underneath saying so; open an item's details from a row in **Recent activity** or **What went wrong**; start the update from its card (Blowhorn restarts to finish); **Connect an account** opens a step for your own profile: each platform, how to sign in to it in your Google Chrome profile, and **Check again**, with connected ones ticked; finish setting up |
+| Home (two tabs: **Today** and **Resources**) | Today: whether Blowhorn is working and whether it needs you, but never what runs next: an activity's next run is on Activity with Recurring selected, and the rail's duty toggle names the next one on hover; the Fleet card: a header switch for the whole fleet beside **Fleet** and the subtitle **Computers running your activities**, computers known (this one and every other computer that has run here or reported lately), how many are on duty or off duty, fleet holds, who took the fleet off duty and why, and a row for each computer with its own duty switch (this computer's is the same as the rail's; another computer's switch shows the duty from the last pass its background service reported, or is off when it has reported nothing in the last half hour, and is held); a computer that is not reporting is never counted on duty, and the card says **2 of 3 reporting** while any one is not; "Your draft was saved" once after setup, until you dismiss it or leave Home; beside them your results, and one card with **Recent activity** and **What went wrong** (it opens on what went wrong while something failed). Resources: ideas worth a try, the latest from Blowhorn - each piece labelled with its column, From the Desk of the General, From Boot Camp or From the Field - and the tips as a taught sequence: the next tip you have not seen yet, its video playing in the card (Maximize, then Restore or Escape) and Read the tip opening the article, one at a time; opening a tip or choosing **Another tip** moves you on, a tip you have seen never comes back, and when you have seen them all the card says so and points to Resources. A newer release is offered on a card at the top of the results column, **Update to Blowhorn** and the version | the Fleet card's header switch, which opens an optional reason with **Save** (takes leave with the reason) and **Skip** (takes leave with none) buttons (Escape closes it and takes nothing), or this computer's switch on its row; open This computer from this computer's row; reconnect a signed-out account from the **Needs you** section at the top of Today: one full-row button per signed-out account, its platform's mark and **Reconnect** (naming the profile, **Reconnect @handle**, only where two signed-out accounts share a platform), which signs that account in again and reads **Reconnecting…** while it runs, and the **?** beside the title says which computer they are signed out on and how many scheduled posts wait (a Bluesky app password or a GitHub token opens Profiles instead); a sign-in that does not finish leaves the row with a note underneath saying so; open an item's details from a row in **Recent activity** or **What went wrong**; start the update from its card (Blowhorn restarts to finish); **Connect an account** opens a step for your own profile: each platform, how to sign in to it in your Google Chrome profile, and **Check again**, with connected ones ticked; finish setting up |
 | Activity, posts | Your posts with their status - "ready", "scheduled", "partly sent", "sent", "draft", "needs you" - and clicked-but-unread ones, each with when it goes out: its own time, "next run" when the next run would take it, "not scheduled" when nothing will send it (a draft, or a post that needs you), and "-" once it has gone out; an opened post shows its result: delivery per profile and platform, reception where it was collected, and the follower change since. With recurrence left on Any, the schedule's routines follow below the posts, each labelled by what it does; a routine names no post, so clicking one opens that routine's details | Click a post to open it in a dialog (a box over the screen), or add one; edit it there; clearing a clicked post's "Date Promoted" queues it again |
 | Activity, routines | Your routines as a day, week or month calendar, or as a list: each item's next time, its last time, and the times that would follow, dashed because they are estimates; a "now" row for items going out or waiting for the service to take them up; a dialog for one item, opened by clicking it in the list or on the calendar; a chooser of sample routines, each one ticked on only once its platform is connected. Calendar is the presentation toggle; day, week and month show only then | Add an item with the **+** button or by clicking a free time (**Schedule** saves it); move an item's next time by dragging it; edit one item in place in its dialog (its changes save as you make them); put it **On hold** or back **In effect** from the state pill beside its title; switch its duty hold from **On watch** / **Off watch** in the details' title bar (Off watch opens an optional reason: **Save** holds it with the reason, **Skip** holds it with none, Escape holds nothing) or from the duty switch on its row or its calendar chip; **Do it now** or **Delete** it from its dialog; turn **dry fire** on in the header to rehearse up to the final click and post nothing (the dry run, `--dry-run`); add the sample routines you tick |
 | Activity, history | Everything Blowhorn did, newest first, reached with Past on and Upcoming off, with each one's detailed log under the log directory's `scheduler/` folder; clicking a run opens it in a dialog over the full-width list, one column with no tabs: what ran, when, how it ended and why it stopped, and the log behind one **Show the log** row that opens in place (it opens by itself while the run is live). The time row says **Started** only when a start was recorded; otherwise it says **Log updated** with the log file's time and "start not recorded". A post's own result (delivery, reception, the follower change) is in its details on Activity, not on the run | open a run; "try again" on a failure |
@@ -14314,6 +14376,19 @@ passes the other Posture checks for that one run and still stops at the
 platform's own limit. The limits themselves
 are listed under
 [A limit the platform publishes is the one hard stop](/docs/how-to/settings/choose-your-rules-of-engagement/#a-limit-the-platform-publishes-is-the-one-hard-stop).
+
+## Visibility
+
+An activity may carry its own visibility: write `visibility=private`
+in its Params and that activity's completed runs stay inside your org,
+never appearing in the public activity feed on blowhorn.ai. Leave the
+entry out, or set it to `public`, and the activity follows your
+account's [Share my activity publicly](/docs/how-to/settings/share-activity/)
+setting. The account setting still wins: with it off, nothing from any
+activity appears in the feed. A word that is not `public` or `private`
+is refused when you save the activity. There is no separate control for
+it on the activity yet; the account switch in Settings is the only
+switch.
 
 ## Pause scopes
 
@@ -15271,7 +15346,9 @@ newer.
 `Local State` and `DevToolsActivePort`, and nothing else: never
 cookies, saved passwords, storage, or the keychain. It writes nothing
 there and opens no browser, DevTools, or network connection. Whether
-Chrome is running is one bounded process lookup. There are four
+Chrome is running is one bounded process lookup, scoped to that data
+directory: a Chrome on another tree (the attach-chrome Chrome, say) does
+not count. There are four
 exceptions. `blowhorn chrome extension-status` also reads each Chrome
 profile's `Secure Preferences` and `Preferences` for the extension's
 entry alone (see [its section](#blowhorn-chrome-extension-status)).
@@ -15524,12 +15601,11 @@ that handles them by default. It is opt-in while the two are compared:
 Any other value stops a run that needs to open Chrome, and names the two choices. With `rust`
 selected and the helper not built, the run stops and says how to build it;
 nothing falls back to the Python cold start. Either way the line on
-stderr, the codes and the messages are the same, with one known
-exception while the two are compared: an announcement that carries
-`NaN` or `Infinity` is `blowhorn-engine-1006` from both, worded as a
-damaged announcement by the helper and as a mismatch by the built-in.
-When the profile's bridge comes up in the moment between
-Blowhorn's check and the helper's, the helper opens nothing and the run
+stderr, the codes and the messages are the same, including an
+announcement that carries `NaN` or `Infinity`: both raise
+`blowhorn-engine-1006` and word it as a mismatch. When the profile's
+bridge comes up in the moment between Blowhorn's check and the helper's,
+the helper opens nothing and the run
 connects to it. On macOS the helper
 opens Chrome in the background (`open -g`), so it does not take focus from
 the app you are using. A helper built from an older checkout, whose codes
@@ -15706,7 +15782,7 @@ the `host_status` answer also says why, in `chrome_profile_reason`
 the extension rotates its nonce, so each copy becomes unique on the
 next ask, and the host answers the same nonce from a short cache while
 the rotation lands. The side panel explains instead of offering a
-mapping link it cannot act on: "This Chrome profile looks like a copy
+mapping link it cannot act on: "This looks like a copy
 of another one. Blowhorn is giving it its own identity."
 
 ## What a site sees: the user agent by driver
@@ -15771,6 +15847,7 @@ the same way:
 | --- | --- |
 | `side_tab` (the default) | an inactive tab right after the tab you are on, in your window |
 | `own_window` | the selected tab of one window of Blowhorn's own, opened without focus in Chrome's normal window state at the size of the window you used last and 56 px to its right, so it sits mostly behind yours with an edge showing. It holds its own Blowhorn tab group, collapsed or open as above. Blowhorn closes it when a run ends, unless you put a tab of your own in it or Blowhorn is waiting for you in it, and makes a new one for the next run. If you close it first, it makes a new one too |
+| `split_view` | a tab in a split view beside the tab you are on, in your window, on Chrome 155 or later. Your tab stays selected and the split tab is visible, so the page reads a real size and a real screen position. On an older Chrome, or when the split cannot be made, Blowhorn works in a window of its own instead, as `own_window` above |
 
 Either way nothing takes focus, your selected tab stays selected, and focus
 emulation is on as the extension mode says. The window is never minimized,
@@ -15787,9 +15864,10 @@ When your Chrome window fills the screen there is no room for the edge, so leave
 a little space on the right of your window, or use `side_tab`.
 
 With no Chrome window
-open, `own_window` stops the profile just as the side tab does. Set it on
+open, `own_window` stops the profile just as the side tab does, and `split_view`
+has no tab to split with, so it stops too. Set it on
 Settings, Chrome extension, or with `blowhorn chrome extension-mode --window
-own-window` (`side-tab`, or `default` to clear it); see
+split-view` (`own-window`, `side-tab`, or `default` to clear it); see
 [Choose where Blowhorn works in Chrome](/docs/how-to/settings/where-blowhorn-works/).
 
 ## Blowhorn's desktop (Spaces)
@@ -15882,6 +15960,7 @@ blowhorn chrome extension-mode classic      # save classic to your account
 blowhorn chrome extension-mode default      # clear it, so runs use background
 blowhorn chrome extension-mode --group open # keep the Blowhorn tab group open
 blowhorn chrome extension-mode --window own-window  # work in a window of its own, mostly behind yours
+blowhorn chrome extension-mode --window split-view  # work in a tab split beside yours, on Chrome 155 or later
 ```
 
 With no mode it reads your account setting from Blowhorn and writes
@@ -15893,7 +15972,7 @@ reports it with the change on top, and writes nothing; when the account cannot b
 and changes nothing. `--json` prints one object: `mode`,
 `source` (`rollback`, `account` or `default`), `account`, `account_error`,
 `rollback`, `rollback_error`, `features`, `group` and `group_account`, `window`
-(`side_tab` or `own_window`) and `window_account`, and `written`.
+(`side_tab`, `own_window` or `split_view`) and `window_account`, and `written`.
 
 ## `blowhorn chrome active-tab`
 
@@ -17463,7 +17542,8 @@ The limits Blowhorn knows for YouTube.
 
 | Limit | Value |
 |---|---|
-| Title | 5000 |
+| Post | 5000 |
+| Title | 100 |
 
 <!-- END generated limits -->
 
